@@ -1,0 +1,97 @@
+/* Sidebar Container */
+.side-nav {
+
+    width: 250px;
+    height: 100vh;
+    background-color: #1B3C53;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 8px 26px;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.side-nav::-webkit-scrollbar {
+    display: none;
+}
+/* Title */
+.side-nav h1 {
+    margin-top: 0%;
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Profile Image */
+.side-nav img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 20px auto;
+    background: #fff;
+}
+
+/* Nav */
+.side-nav nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Main List Item */
+.side-nav nav ul>li {
+    padding: 12px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+/* Hover effect */
+.side-nav nav ul>li:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Submenu UL */
+.side-nav nav ul ul {
+    margin-left: 15px;
+    margin-top: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 10px;
+    border-radius: 6px;
+    display: block;
+    /* change to none if you want hide */
+}
+
+/* Submenu LI */
+.side-nav nav ul ul li {
+    padding: 8px 5px;
+    font-size: 14px;
+    border-radius: 6px;
+}
+
+.side-nav nav ul ul li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Logout Button */
+.side-nav button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 25px;
+    background-color: #E74C3C;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.side-nav button:hover {
+    background-color: #c0392b;
+}

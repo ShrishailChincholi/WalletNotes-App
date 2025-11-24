@@ -1,9 +1,11 @@
+import Navbar from "./components/Navbar"
+import "./style/Navbar.css"
 function App() {
  
 
   return (
     <>
-     <div>HI AM SHRISHAIL</div>
+     <Navbar/>
     </>
   )
 }
