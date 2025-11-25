@@ -19,7 +19,7 @@ function Navbar() {
             Eepenses
             <ul>
               <li>
-                <Link to="/expenses/all">All Expenses</Link>
+                <Link to="/expenses/all">All Expenses</Link> 
               </li>
               <li>
                 <Link to="/expenses/add">Add Expenses</Link>
