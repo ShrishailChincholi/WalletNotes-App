@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const ExpenseRouter = require('./Router/Expenses');
 const ConnenctDB = require('./config/dbconnect');
+const Db  = require('./modules/ExpensesModule')
 
 // DB Contection
 ConnenctDB();
@@ -12,6 +13,10 @@ app.use(express.json());
 
 // Routers
 app.use('/exp',ExpenseRouter);
+app.get('/exp', async(req,res)=>{
+    const data = await Db.find()
+    res.json(data)
+})
 
 app.get('/',(req,res)=>{
     res.send("Hello Iam BackEnd - App");

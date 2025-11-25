@@ -1,11 +1,19 @@
-import Navbar from "./components/Navbar"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 import "./style/Navbar.css"
+import AddExpense from "./pages/AddExpense"
+import Navbar from "./components/Navbar"
 function App() {
  
 
   return (
     <>
-     <Navbar/>
+      <BrowserRouter>
+        <Navbar />
+
+        <Routes>
+          <Route path="/expenses/add" element={<AddExpense />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
