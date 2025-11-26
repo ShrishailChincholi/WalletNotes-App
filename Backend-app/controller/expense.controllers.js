@@ -11,6 +11,10 @@ const ExpenseAdd = async (req, res) => {
             about: about,
         })
         await AddNewExp.save();
+        res.status(201).json({
+            success: true,
+            message: "Expense Saved Successfully!"
+        });
         console.log("Expense Added Succsefully")
     } catch (error) {
         console.log("Error in Adding Expense ");

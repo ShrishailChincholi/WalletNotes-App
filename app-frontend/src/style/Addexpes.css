@@ -1,0 +1,94 @@
+/* 🌈 Attractive Background */
+body {
+
+    min-height: 100vh;
+    padding: 40px 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+/* 📦 Form Container Style */
+.form-box {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* ✨ Form Title */
+.form-box h2 {
+    text-align: center;
+    margin-bottom: 18px;
+    color: #222;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* 🏷 Labels */
+.form-box label {
+    display: block;
+    margin-bottom: 6px;
+    margin-top: 12px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* 📝 Inputs + Textarea */
+.form-box input,
+.form-box textarea {
+    width: 87%;
+    padding: 12px;
+    border: 2px solid #d6d6d6;
+    border-radius: 10px;
+    outline: none;
+    margin-bottom: 6px;
+    font-size: 15px;
+    transition: 0.3s;
+    background: #f9f9f9;
+}
+
+/* 🔍 Beautiful Focus Effect */
+.form-box input:focus,
+.form-box textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+    background: #fff;
+}
+
+/* 💾 Save Button */
+.form-box button {
+    width: 100%;
+    padding: 14px;
+    background: #0066ff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin-top: 18px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+/* 🚀 Button Hover */
+.form-box button:hover {
+    background: #0049b7;
+    transform: translateY(-2px);
+}
+
+/* 🎬 Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,71 +1,81 @@
-import React, {  } from 'react'
+import React, { useState } from 'react'
 
 const AddExpense = () => {
-    // const [expData, setExpData] = useState({
+    const [formData, setFormData] = useState({
+        title: "",
+        amount: "",
+        paymentMethod: "",
+        date: "",
+        about: "",
+    });
 
-    // })
+    function handleChange(e) {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
-    return (
-        <>
+    
 
-            <div className="form-box" style={{ maxWidth: "500px", margin: "20px auto", padding: "20px", background: "white", borderRadius: "10px", boxShadow: "0 0 10px #ccc" }}>
-                <h2>Expense Form</h2>
+    async function handleSubmit(e) {
+        e.preventDefault();
+        try {
+      const response = await fetch("http://localhost:6060/expenses/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const DataExp = await response.json();
+      if (DataExp.save) {
+        alert("Expense Saved Successfully!");
+        setFormData({
+          title: "",
+          amount: "",
+          paymentMethod: "",
+          date: "",
+          about: ""
+        });
+      }
+    } catch (error) {
+      console.error("Error : In adding Expenses", error);
+    }
+  }
 
-                <label>
-                    Title *
-                    <input
-                        type="text"
-                        name="title"
-                        placeholder="Enter title"
-                        required
-                    />
-                </label>
+  function savedData(){
+        
+    }
 
-                <label>
-                    Amount *
-                    <input
-                        type="number"
-                        name="amount"
-                        placeholder="Enter amount"
-                        required
-                    />
-                </label>
+return (
+    <>
 
-                <label>
-                    Payment Method
-                    <input
-                        type="text"
-                        name="paymentMethod"
-                        placeholder="Cash / Card / UPI"
-                    />
-                </label>
+       <div className="form-box">
+      <h2>Add Expense</h2>
 
-                <label>
-                    Date
-                    <input
-                        type="date"
-                        name="date"
-                    />
-                </label>
+      <form onSubmit={handleSubmit}>
+        <label>Title *</label>
+        <input type="text" name="title" value={formData.title}
+          placeholder="Enter title" required onChange={handleChange} />
 
-                <label>
-                    About
-                    <textarea
-                        name="about"
-                        rows="3"
-                        placeholder="Write details..."
-                    ></textarea>
-                </label>
+        <label>Amount *</label>
+        <input type="number" name="amount" value={formData.amount}
+          placeholder="Enter amount" required onChange={handleChange} />
 
-                <button
-                    style={{ padding: "10px 20px", background: "blue", color: "white", border: "none", borderRadius: "6px", marginTop: "10px" }}
-                >
-                    Save
-                </button>
-            </div>
+        <label>Payment Method</label>
+        <input type="text" name="paymentMethod" value={formData.paymentMethod}
+          placeholder="Cash / Card / UPI" onChange={handleChange} />
 
-        </>
-    )
+        <label>Date</label>
+        <input type="date" name="date" value={formData.date}
+          onChange={handleChange} />
+
+        <label>About</label>
+        <textarea name="about" rows="3" value={formData.about}
+          placeholder="Write details..." onChange={handleChange}></textarea>
+
+        <button type="submit" onClick={savedData}>Save</button>
+      </form>
+    </div>
+
+    </>
+)
 }
 
 

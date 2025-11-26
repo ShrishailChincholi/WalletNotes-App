@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import "./style/Navbar.css"
+import "./style/Addexpes.css"
 import AddExpense from "./pages/AddExpense"
 import Navbar from "./components/Navbar"
 function App() {
@@ -11,7 +12,7 @@ function App() {
         <Navbar />
 
         <Routes>
-          <Route path="/expenses/add" element={<AddExpense />} />
+          <Route path="expenses/add" element={<AddExpense />} />
         </Routes>
       </BrowserRouter>
     </>
