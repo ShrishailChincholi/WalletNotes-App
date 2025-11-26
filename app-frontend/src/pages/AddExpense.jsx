@@ -24,7 +24,7 @@ const AddExpense = () => {
         body: JSON.stringify(formData),
       });
       const DataExp = await response.json();
-      if (DataExp.save) {
+      if (DataExp.success) {
         alert("Expense Saved Successfully!");
         setFormData({
           title: "",
@@ -39,9 +39,7 @@ const AddExpense = () => {
     }
   }
 
-  function savedData(){
-        
-    }
+
 
 return (
     <>
@@ -70,7 +68,7 @@ return (
         <textarea name="about" rows="3" value={formData.about}
           placeholder="Write details..." onChange={handleChange}></textarea>
 
-        <button type="submit" onClick={savedData}>Save</button>
+        <button type="submit">Save</button>
       </form>
     </div>
 

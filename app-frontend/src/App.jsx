@@ -12,7 +12,7 @@ function App() {
         <Navbar />
 
         <Routes>
-          <Route path="expenses/add" element={<AddExpense />} />
+          <Route path="/expenses/add" element={<AddExpense />} />
         </Routes>
       </BrowserRouter>
     </>
