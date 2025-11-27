@@ -17,7 +17,7 @@ app.use(express.json());
 app.use('/expenses/add',ExpenseRouter);
 // app.get('/expenses/add', async(req,res)=>{
 //     const data = await Db.find()
-//     res.json(data)
+  
 // })
 
 app.get('/',(req,res)=>{

@@ -3,6 +3,7 @@ import "./style/Navbar.css"
 import "./style/Addexpes.css"
 import AddExpense from "./pages/AddExpense"
 import Navbar from "./components/Navbar"
+import MonthlyTotal from "./pages/viewExpe"
 function App() {
  
 
@@ -13,6 +14,7 @@ function App() {
 
         <Routes>
           <Route path="/expenses/add" element={<AddExpense />} />
+          <Route path="/expenses/all" element={<MonthlyTotal/>}/>
         </Routes>
       </BrowserRouter>
     </>

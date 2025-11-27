@@ -37,6 +37,7 @@ const AddExpense = () => {
     } catch (error) {
       console.error("Error : In adding Expenses", error);
     }
+    
   }
 
 
