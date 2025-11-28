@@ -17,7 +17,7 @@ const MonthlyTotal = () => {
       const expDate = new Date(exp.date);
       const now = new Date();
       return (
-        expDate.getMonth() === now.getMonth() &&
+        expDate.getDate() === now.getDate() &&
         expDate.getFullYear() === now.getFullYear()
       );
     })
