@@ -3,7 +3,8 @@ const app = express();
 const ExpenseRouter = require('./Router/Expenses');
 const ConnenctDB = require('./config/dbconnect');
 const Db  = require('./modules/ExpensesModule')
-const cors = require("cors")
+const cors = require("cors");
+const routernotes = require('./Router/Addnotes');
 
 // DB Contection
 ConnenctDB();
@@ -15,6 +16,7 @@ app.use(express.json());
 
 // Routers
 app.use('/expenses/add',ExpenseRouter);
+app.use('/notes/add',routernotes)
 // app.get('/expenses/add', async(req,res)=>{
 //     const data = await Db.find()
   
