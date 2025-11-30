@@ -8,6 +8,10 @@ const Addnote = async (req,res) => {
             content : content
         });
         await newdata.save();
+         res.status(201).json({
+            success: true,
+            message: "Expense Saved Successfully!"
+        });
         console.log("Note saved Successfully");
     } catch (error) {
         console.log(`Error in addnotes controller = ${error}`);
