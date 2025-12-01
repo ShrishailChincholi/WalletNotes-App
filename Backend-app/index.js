@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
-const ExpenseRouter = require('./Router/Expenses');
 const ConnenctDB = require('./config/dbconnect');
 const Db  = require('./modules/ExpensesModule')
 const cors = require("cors");
 const routernotes = require('./Router/Addnotes');
+const ExpenseRouter = require('./Router/Expenses');
 
 // DB Contection
 ConnenctDB();
@@ -17,10 +17,16 @@ app.use(express.json());
 // Routers
 app.use('/expenses/add',ExpenseRouter);
 app.use('/notes/add',routernotes)
-// app.get('/expenses/add', async(req,res)=>{
-//     const data = await Db.find()
-  
-// })
+app.get('/expenses', async (req, res) => {
+  try {
+    const data = await Db.find();
+    res.json(data);  // send data to frontend
+  } catch (err) {
+    console.error("Error fetching data:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 
 app.get('/',(req,res)=>{
     res.send("Hello Iam BackEnd - App");

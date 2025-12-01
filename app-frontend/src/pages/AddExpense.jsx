@@ -69,7 +69,7 @@ return (
         <textarea name="about" rows="3" value={formData.about}
           placeholder="Write details..." onChange={handleChange}></textarea>
 
-        <button type="submit">Save</button>
+        <button type="submit" >Save</button>
       </form>
     </div>
 

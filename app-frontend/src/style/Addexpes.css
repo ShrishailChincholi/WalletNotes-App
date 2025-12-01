@@ -92,3 +92,49 @@ body {
         transform: translateY(0);
     }
 }
+
+/* View Expensis */
+.expense-summary {
+  display: flex;
+  gap: 20px;
+  padding-left: 260px; /* Adjust based on sidebar width */
+  margin-top: 40px;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+
+.total-box {
+  width: 180px;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.total-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+/* Different gradient backgrounds */
+.total-all {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+.total-month {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.total-day {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.total-box p {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 10px;
+}
