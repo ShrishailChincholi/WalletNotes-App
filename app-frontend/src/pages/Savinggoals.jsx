@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 
 const SavingGoals = () => {
@@ -9,38 +9,61 @@ const SavingGoals = () => {
     savedAmount: "",
   });
 
+  // Fetch goals
+  async function loadGoals() {
+    try {
+      const response = await fetch("http://localhost:6060/goals/saving");
+      const data = await response.json();
+      if (data.success) setGoals(data.data);
+    } catch (error) {
+      console.error("Error fetching goals:", error);
+    }
+  }
+
+  useEffect(() => {
+    loadGoals();
+  }, []);
+
+  // Handle form change
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
-  function handleSubmit(e) {
+  // Handle form submit
+  async function handleSubmit(e) {
     e.preventDefault();
-    const newGoal = {
-      ...formData,
-      id: Date.now(),
-    };
-    setGoals([...goals, newGoal]);
+    try {
+      const response = await fetch("http://localhost:6060/goals/saving", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    setFormData({
-      title: "",
-      targetAmount: "",
-      savedAmount: "",
-    });
+      const resData = await response.json();
+
+      if (resData.success) {
+        alert("Goal Added Successfully!");
+        setFormData({ title: "", targetAmount: "", savedAmount: "" });
+        loadGoals(); // Refresh list
+      }
+    } catch (error) {
+      console.error("Error adding goal:", error);
+    }
   }
 
   return (
     <div className="goals-container">
       <h2>Saving Goals</h2>
 
-      {/* Add Goal Form */}
+      {/* Form */}
       <form className="goal-form" onSubmit={handleSubmit}>
         <input
           type="text"
           name="title"
           placeholder="Goal Title"
           value={formData.title}
-          onChange={handleChange}
           required
+          onChange={handleChange}
         />
 
         <input
@@ -48,8 +71,8 @@ const SavingGoals = () => {
           name="targetAmount"
           placeholder="Target Amount (₹)"
           value={formData.targetAmount}
-          onChange={handleChange}
           required
+          onChange={handleChange}
         />
 
         <input
@@ -57,37 +80,42 @@ const SavingGoals = () => {
           name="savedAmount"
           placeholder="Saved Amount (₹)"
           value={formData.savedAmount}
-          onChange={handleChange}
           required
+          onChange={handleChange}
         />
 
         <button type="submit">Add Goal</button>
       </form>
 
-      {/* Display Goals */}
+      {/* Goals List */}
       <div className="goals-list">
-        {goals.map((goal) => {
-          const progress =
-            (Number(goal.savedAmount) / Number(goal.targetAmount)) * 100;
+        {goals.length === 0 ? (
+          <p>No saving goals yet.</p>
+        ) : (
+          goals.map((goal, index) => {
+            const target = Number(goal.targetAmount);
+            const saved = Number(goal.savedAmount);
+            const progress = target > 0 ? (saved / target) * 100 : 0;
 
-          return (
-            <div className="goal-card" key={goal.id}>
-              <h3>{goal.title}</h3>
-              <p>
-                Saved: ₹{goal.savedAmount} / ₹{goal.targetAmount}
-              </p>
+            return (
+              <div className="goal-card" key={goal._id || index}>
+                <h3>{goal.title}</h3>
+                <p>
+                  ₹{saved} / ₹{target}
+                </p>
 
-              <div className="progress-bar">
-                <div
-                  className="progress"
-                  style={{ width: `${progress}%` }}
-                ></div>
+                <div className="progress-bar">
+                  <div
+                    className="progress"
+                    style={{ width: `${progress}%` }}
+                  ></div>
+                </div>
+
+                <p className="progress-text">{Math.floor(progress)}%</p>
               </div>
-
-              <p className="progress-text">{Math.floor(progress)}%</p>
-            </div>
-          );
-        })}
+            );
+          })
+        )}
       </div>
     </div>
   );

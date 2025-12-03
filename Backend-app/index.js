@@ -5,6 +5,8 @@ const Db  = require('./modules/ExpensesModule')
 const cors = require("cors");
 const routernotes = require('./Router/Addnotes');
 const ExpenseRouter = require('./Router/Expenses');
+const goalsrouter = require('./Router/Savingoals');
+const SavingGoalsModules = require('./modules/SavingGolas');
 
 // DB Contection
 ConnenctDB();
@@ -17,6 +19,7 @@ app.use(express.json());
 // Routers
 app.use('/expenses/add',ExpenseRouter);
 app.use('/notes/add',routernotes)
+app.use('/goals/saving',goalsrouter)
 app.get('/expenses', async (req, res) => {
   try {
     const data = await Db.find();
@@ -27,6 +30,15 @@ app.get('/expenses', async (req, res) => {
   }
 });
 
+app.get('/goals/saving',async (req, res) => {
+  try {
+    const goals = await SavingGoalsModules.find();
+    res.status(200).json(goals);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching goals", error: error.message });
+  }
+}
+)
 
 app.get('/',(req,res)=>{
     res.send("Hello Iam BackEnd - App");

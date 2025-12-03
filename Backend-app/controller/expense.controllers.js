@@ -17,7 +17,7 @@ const ExpenseAdd = async (req, res) => {
         });
         console.log("Expense Added Succsefully")
     } catch (error) {
-        console.log("Error in Adding Expense ");
+        console.log(`Error in Adding Expense =${error} `,error);
     }
 };
 
