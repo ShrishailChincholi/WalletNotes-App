@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-
 const SavingGoals = () => {
   const [goals, setGoals] = useState([]);
   const [formData, setFormData] = useState({
@@ -9,14 +8,20 @@ const SavingGoals = () => {
     savedAmount: "",
   });
 
-  // Fetch goals
   async function loadGoals() {
     try {
       const response = await fetch("http://localhost:6060/goals/saving");
       const data = await response.json();
-      if (data.success) setGoals(data.data);
+      console.log("Loaded Goals:", data);
+
+      if (data.success && Array.isArray(data.data)) {
+        setGoals(data.data);
+      } else {
+        setGoals([]);
+      }
     } catch (error) {
       console.error("Error fetching goals:", error);
+      setGoals([]);
     }
   }
 
@@ -24,12 +29,10 @@ const SavingGoals = () => {
     loadGoals();
   }, []);
 
-  // Handle form change
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
-  // Handle form submit
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -44,7 +47,7 @@ const SavingGoals = () => {
       if (resData.success) {
         alert("Goal Added Successfully!");
         setFormData({ title: "", targetAmount: "", savedAmount: "" });
-        loadGoals(); // Refresh list
+        loadGoals();
       }
     } catch (error) {
       console.error("Error adding goal:", error);
@@ -55,7 +58,7 @@ const SavingGoals = () => {
     <div className="goals-container">
       <h2>Saving Goals</h2>
 
-      {/* Form */}
+      {/* Add Goal Form */}
       <form className="goal-form" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -65,7 +68,6 @@ const SavingGoals = () => {
           required
           onChange={handleChange}
         />
-
         <input
           type="number"
           name="targetAmount"
@@ -74,7 +76,6 @@ const SavingGoals = () => {
           required
           onChange={handleChange}
         />
-
         <input
           type="number"
           name="savedAmount"
@@ -83,7 +84,6 @@ const SavingGoals = () => {
           required
           onChange={handleChange}
         />
-
         <button type="submit">Add Goal</button>
       </form>
 
@@ -93,24 +93,20 @@ const SavingGoals = () => {
           <p>No saving goals yet.</p>
         ) : (
           goals.map((goal, index) => {
-            const target = Number(goal.targetAmount);
-            const saved = Number(goal.savedAmount);
-            const progress = target > 0 ? (saved / target) * 100 : 0;
+            const target = Number(goal.targetAmount) || 0;
+            const saved = Number(goal.savedAmount) || 0;
+            const progress = target > 0 ? Math.min((saved / target) * 100, 100) : 0;
 
             return (
               <div className="goal-card" key={goal._id || index}>
                 <h3>{goal.title}</h3>
-                <p>
-                  ₹{saved} / ₹{target}
-                </p>
-
+                <p>₹{saved} / ₹{target}</p>
                 <div className="progress-bar">
                   <div
                     className="progress"
                     style={{ width: `${progress}%` }}
                   ></div>
                 </div>
-
                 <p className="progress-text">{Math.floor(progress)}%</p>
               </div>
             );

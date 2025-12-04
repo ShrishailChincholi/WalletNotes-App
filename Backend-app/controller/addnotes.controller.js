@@ -10,7 +10,7 @@ const Addnote = async (req,res) => {
         await newdata.save();
          res.status(201).json({
             success: true,
-            message: "Expense Saved Successfully!"
+            message: "Notes Saved Successfully!"
         });
         console.log("Note saved Successfully");
     } catch (error) {

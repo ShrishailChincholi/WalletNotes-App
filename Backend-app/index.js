@@ -30,15 +30,20 @@ app.get('/expenses', async (req, res) => {
   }
 });
 
-app.get('/goals/saving',async (req, res) => {
+app.get("/goals/saving", async (req, res) => {
   try {
     const goals = await SavingGoalsModules.find();
-    res.status(200).json(goals);
+
+    res.json({
+      success: true,
+      data: goals,
+    });
   } catch (error) {
-    res.status(500).json({ message: "Error fetching goals", error: error.message });
+    console.log("Error fetching goals:", error);
+    res.json({ success: false });
   }
-}
-)
+});
+
 
 app.get('/',(req,res)=>{
     res.send("Hello Iam BackEnd - App");
