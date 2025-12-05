@@ -1,24 +1,39 @@
 import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const AddNote = ({editNote,onSuccess}) => {
+const AddNote = () => {
   const [formData, setFormData] = useState({
     title: "",
     sub: "",
     content: "",
   });
 
-  // Edite mode fill form
-  useEffect(()=>{
-    if (editNote) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setFormData({
-        title:editNote.title,
-        sub:editNote.sub,
-        content:editNote.content
-      });
-    }
-  },[editNote])
+  const location = useLocation();
+  const navigate = useNavigate();
+  const params = new URLSearchParams(location.search);
+  const noteId = params.get("id");
 
+
+  async function fetchNote() {
+    try {
+      const res = await fetch(`http://localhost:6060/notes/add/${noteId}`);
+      const data = await res.json();
+      setFormData({
+        title: data.title,
+        sub: data.sub,
+        content: data.content,
+      });
+    } catch (err) {
+      console.log("Error loading note:", err);
+    }
+  }
+
+  useEffect(() => {
+    if (noteId) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      fetchNote();
+    }
+  }, [noteId]);
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -26,42 +41,36 @@ const AddNote = ({editNote,onSuccess}) => {
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    const method = noteId ? "PUT" : "POST";
+    const url = noteId
+      ? `http://localhost:6060/notes/add/${noteId}`
+      : "http://localhost:6060/notes/add";
+
     try {
-      const url = editNote 
-      ?`http://localhost:6060/notes/add/${editNote._id}`
-      :"http://localhost:6060/notes/add";
-
-      const method = editNote ? "PUT" : "POST";
-
-      const response = await fetch(url, {
+      await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
-      const NoteData = await response.json();
-
-      if (NoteData.success) {
-        alert(editNote ? "Note Updated Successfully!":"Note Saved Successfully");
-
+      alert(noteId ? "Note Updated Successfully!" : "Note Saved Successfully");
+      if (noteId) {
+        // Only when update → redirect
+        navigate("/notes/all");
+      } else {
+        // When adding new → stay here + clear form
         setFormData({ title: "", sub: "", content: "" });
-        if(onSuccess) onSuccess();
-
-        setFormData({
-          title: "",
-          sub: "",
-          content: "",
-        });
       }
     } catch (error) {
-      console.error("Error : In adding Note", error);
+      console.error("Error saving note:", error);
     }
   }
 
   return (
     <>
       <div className="form-box">
-         <h2>{editNote ? "Update Note" : "Add Note"}</h2>
+        <h2>{noteId ? "Update Note" : "Add Note"}</h2>
 
         <form onSubmit={handleSubmit}>
           <label>Title *</label>
@@ -95,8 +104,8 @@ const AddNote = ({editNote,onSuccess}) => {
           ></textarea>
 
           <button type="submit">
-          {editNote ? "Update Note" : "Save Note"}
-        </button>
+            {noteId ? "Update Note" : "Save Note"}
+          </button>
         </form>
       </div>
     </>

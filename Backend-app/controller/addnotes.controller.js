@@ -24,11 +24,34 @@ const getnotes =
         res.json(notes);
     };
 
+const getSingleNote = async (req, res) => {
+    try {
+        const note = await AddnoteModule.findById(req.params.id);
+        if (!note) {
+            return res.status(404).json({ message: "Note not found" });
+        }
+        res.json(note);
+    } catch (error) {
+        res.status(500).json({ message: "Server Error", error });
+    }
+};
+
+
 const updateNotes = async (req,res) => {
     try {
-        const id = req.params.id;
-        await AddnoteModule.findByIdAndUpdate(id,req.body);
-        res.json({ success: true, message: "Note Updated!" })
+         const id = req.params.id;
+
+    const updatedNote = await AddnoteModule.findByIdAndUpdate(
+      id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedNote) {
+      return res.status(404).json({ success: false, message: "Note not found" });
+    }
+
+    res.json({ success: true, message: "Note Updated!", data: updatedNote });
     } catch (error) {
          res.status(500).json({ success: false, error });
          console.log("Not Updateing Date ")
@@ -50,6 +73,6 @@ module.exports = {
     getnotes,
     updateNotes,
     deleteNote,
-
+    getSingleNote,
 };
 

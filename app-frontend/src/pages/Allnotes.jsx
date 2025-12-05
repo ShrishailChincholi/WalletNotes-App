@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
-const AllNotes = ({ onEdit }) => {
+const AllNotes = () => {
   const [notes, setNotes] = useState([]);
+  const navigate = useNavigate();
 
   async function fectNotes() {
     try {
@@ -31,6 +33,10 @@ const AllNotes = ({ onEdit }) => {
     }
   }
 
+    function handleEdit(id) {
+   navigate(`/notes/add?id=${id}`); // Redirect to AddNotes for Edit mode
+  }
+
   return (
     <div className="notes-container">
       <h2 className="notes-heading">📚 All Notes Titles</h2>
@@ -42,7 +48,7 @@ const AllNotes = ({ onEdit }) => {
               <h3 className="note-title">📌 {note.title}</h3>
 
               <div className="btn-group">
-                <button className="update-btn" onClick={() => onEdit(note)}>
+                <button className="update-btn" onClick={() => handleEdit(note._id)}>
                   ✏️ Edit
                 </button>
                 <button className="delete-btn" onClick={() => handleDelete(note._id)}>
