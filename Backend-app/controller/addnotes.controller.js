@@ -1,14 +1,14 @@
 const AddnoteModule = require('../modules/Addnote.module');
-const Addnote = async (req,res) => {
+const Addnote = async (req, res) => {
     try {
-        const {title,sub,content} = req.body;
+        const { title, sub, content } = req.body;
         const newdata = new AddnoteModule({
             title: title,
             sub: sub,
-            content : content
+            content: content
         });
         await newdata.save();
-         res.status(201).json({
+        res.status(201).json({
             success: true,
             message: "Notes Saved Successfully!"
         });
@@ -18,4 +18,13 @@ const Addnote = async (req,res) => {
     }
 }
 
-module.exports = Addnote;
+const getnotes =
+    async (req, res) => {
+        const notes = await AddnoteModule.find();
+        res.json(notes);
+    };
+module.exports = {
+    Addnote,
+    getnotes,
+};
+

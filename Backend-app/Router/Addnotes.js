@@ -1,7 +1,8 @@
 const express = require('express');
-const Addnote = require('../controller/addnotes.controller');
+const {Addnote,getnotes} = require('../controller/addnotes.controller');
 const routernotes = express.Router();
 
 routernotes.post('/',Addnote);
+routernotes.get('/',getnotes)
 
 module.exports = routernotes;
