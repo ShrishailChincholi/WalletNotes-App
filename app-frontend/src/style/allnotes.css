@@ -49,3 +49,54 @@
     color: #444;
     font-size: 18px;
 }
+
+/* Buttons Container */
+.note-actions {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* Update Button */
+.update-btn {
+    background-color: #0ea5e9;
+    color: #fff;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+    margin-right: 33px;
+}
+
+.update-btn:hover {
+    background-color: #0369a1;
+    transform: translateY(-3px);
+}
+
+.btn-groupp {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/* Delete Button */
+.delete-btn {
+    background-color: #ef4444;
+    color: #fff;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #b91c1c;
+    transform: translateY(-3px);
+}

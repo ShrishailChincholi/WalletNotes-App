@@ -23,8 +23,33 @@ const getnotes =
         const notes = await AddnoteModule.find();
         res.json(notes);
     };
+
+const updateNotes = async (req,res) => {
+    try {
+        const id = req.params.id;
+        await AddnoteModule.findByIdAndUpdate(id,req.body);
+        res.json({ success: true, message: "Note Updated!" })
+    } catch (error) {
+         res.status(500).json({ success: false, error });
+         console.log("Not Updateing Date ")
+    }
+}
+
+const deleteNote = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await AddnoteModule.findByIdAndDelete(id);
+    res.json({ success: true, message: "Note Deleted!" });
+  } catch (error) {
+    res.status(500).json({ success: false, error });
+  }
+};
+
 module.exports = {
     Addnote,
     getnotes,
+    updateNotes,
+    deleteNote,
+
 };
 

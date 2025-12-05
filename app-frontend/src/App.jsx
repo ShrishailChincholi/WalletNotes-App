@@ -12,14 +12,13 @@ import TotalExpenses from "./pages/viewExpe"
 import SavingGoals from "./pages/Savinggoals"
 import AllNotes from "./pages/Allnotes"
 function App() {
- 
 
   return (
     <>
       <BrowserRouter>
         <Navbar />
 
-        <Routes>
+        <Routes> 
           <Route path="/expenses/add" element={<AddExpense/>}/>
           {/* <Route path="/expenses/all" element={<MonthlyTotal/>}/> */}
           <Route path="/expenses/all" element={<TotalExpenses/>}/>

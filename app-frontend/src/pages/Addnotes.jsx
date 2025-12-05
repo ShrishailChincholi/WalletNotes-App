@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const AddNote = () => {
+const AddNote = ({editNote,onSuccess}) => {
   const [formData, setFormData] = useState({
     title: "",
     sub: "",
     content: "",
   });
 
+  // Edite mode fill form
+  useEffect(()=>{
+    if (editNote) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setFormData({
+        title:editNote.title,
+        sub:editNote.sub,
+        content:editNote.content
+      });
+    }
+  },[editNote])
 
 
   function handleChange(e) {
@@ -16,8 +27,14 @@ const AddNote = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:6060/notes/add", {
-        method: "POST",
+      const url = editNote 
+      ?`http://localhost:6060/notes/add/${editNote._id}`
+      :"http://localhost:6060/notes/add";
+
+      const method = editNote ? "PUT" : "POST";
+
+      const response = await fetch(url, {
+        method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
@@ -25,7 +42,10 @@ const AddNote = () => {
       const NoteData = await response.json();
 
       if (NoteData.success) {
-        alert("Note Saved Successfully!");
+        alert(editNote ? "Note Updated Successfully!":"Note Saved Successfully");
+
+        setFormData({ title: "", sub: "", content: "" });
+        if(onSuccess) onSuccess();
 
         setFormData({
           title: "",
@@ -41,7 +61,7 @@ const AddNote = () => {
   return (
     <>
       <div className="form-box">
-        <h2>Add Note</h2>
+         <h2>{editNote ? "Update Note" : "Add Note"}</h2>
 
         <form onSubmit={handleSubmit}>
           <label>Title *</label>
@@ -74,7 +94,9 @@ const AddNote = () => {
             onChange={handleChange}
           ></textarea>
 
-          <button type="submit">Save Note</button>
+          <button type="submit">
+          {editNote ? "Update Note" : "Save Note"}
+        </button>
         </form>
       </div>
     </>
