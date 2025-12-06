@@ -1,4 +1,6 @@
 const AddnoteModule = require('../modules/Addnote.module');
+
+// Create notes
 const Addnote = async (req, res) => {
     try {
         const { title, sub, content } = req.body;
@@ -24,6 +26,8 @@ const getnotes =
         res.json(notes);
     };
 
+
+// Get a single routes for edite
 const getSingleNote = async (req, res) => {
     try {
         const note = await AddnoteModule.findById(req.params.id);
@@ -37,6 +41,7 @@ const getSingleNote = async (req, res) => {
 };
 
 
+// Update the notes
 const updateNotes = async (req,res) => {
     try {
          const id = req.params.id;
@@ -58,6 +63,7 @@ const updateNotes = async (req,res) => {
     }
 }
 
+// Delete The notes 
 const deleteNote = async (req, res) => {
   try {
     const id = req.params.id;

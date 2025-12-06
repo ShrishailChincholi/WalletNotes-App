@@ -33,8 +33,8 @@ const AllNotes = () => {
     }
   }
 
-    function handleEdit(id) {
-   navigate(`/notes/add?id=${id}`); // Redirect to AddNotes for Edit mode
+  function handleEdit(id) {
+    navigate(`/notes/add?id=${id}`); // Redirect to AddNotes for Edit mode
   }
 
   return (
