@@ -6,7 +6,12 @@ const TotalExpenses = () => {
   useEffect(() => {
     fetch("http://localhost:6060/expenses")
       .then((res) => res.json())
-      .then((data) => setExpenses(data))
+       .then((data) => {
+        // Backend returns { success: true, data: [...] }
+        if (data.success && Array.isArray(data.data)) {
+          setExpenses(data.data);
+        }
+      })
       .catch((err) => console.error("Fetch Error:", err));
   }, []);
 

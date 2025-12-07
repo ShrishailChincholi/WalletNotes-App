@@ -2,11 +2,11 @@ const ExpensesModule = require("../modules/ExpensesModule");
 
 const ExpenseAdd = async (req, res) => {
     try {
-        const { title, amount, Paymenthoda, Date, about } = req.body;
+        const { title, amount, paymentMethod, Date, about } = req.body;
         const AddNewExp = new ExpensesModule({
             title: title,
             amount: amount,
-            Paymenthoda: Paymenthoda,
+            paymentMethod: paymentMethod,
             Date: Date,
             about: about,
         })
@@ -17,7 +17,7 @@ const ExpenseAdd = async (req, res) => {
         });
         console.log("Expense Added Succsefully")
     } catch (error) {
-        console.log(`Error in Adding Expense =${error} `,error);
+        console.log(`Error in Adding Expense =${error} `, error);
     }
 };
 

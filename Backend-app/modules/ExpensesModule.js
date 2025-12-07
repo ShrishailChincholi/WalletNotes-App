@@ -11,15 +11,17 @@ const ExpensesModule = mongoose.Schema(
             require: true
         },
 
-        Paymentmethoda: {
-            type: String
+        paymentMethod: {
+            type: String,
+            require: true
         },
         Date: {
             type: Date,
             default:Date.now
         },
         about:{
-            type:String
+            type:String,
+            require: true
         }
     }
 )

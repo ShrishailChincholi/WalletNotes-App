@@ -8,6 +8,7 @@ const ExpenseRouter = require('./Router/Expenses');
 const goalsrouter = require('./Router/Savingoals');
 const SavingGoalsModules = require('./modules/SavingGolas');
 const SpendBugetRoute = require('./Router/spendBuget');
+const BuddgetModule = require('./modules/BuddgetModule');
 
 // DB Contection
 ConnenctDB();
@@ -18,14 +19,18 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
 // Routers
-app.use('/expenses/add',ExpenseRouter);
+// app.use('/expenses/add',ExpenseRouter);
+app.use('/expenses', ExpenseRouter);
 app.use('/notes/add',routernotes)
 app.use('/goals/saving',goalsrouter)
 app.use('/goals/spending-limit',SpendBugetRoute)
 app.get('/expenses', async (req, res) => {
   try {
     const data = await Db.find();
-    res.json(data);  // send data to frontend
+    res.json({
+      success: true,
+      data: data
+    }); // send data to frontend
   } catch (err) {
     console.error("Error fetching data:", err);
     res.status(500).json({ message: "Server error" });
@@ -45,6 +50,24 @@ app.get("/goals/saving", async (req, res) => {
     res.json({ success: false });
   }
 });
+
+app.get("/goals/spending-limit",async (req, res) => {
+  try {
+    // Fetch the latest saved budget
+    const budgetData = await BuddgetModule.findOne().sort({ createdAt: -1 });
+
+    res.status(200).json({
+      success: true,
+      budget: budgetData ? budgetData.budget : 0, // Return 0 if no budget is set
+    });
+  } catch (error) {
+    console.log(`Error in fetching total budget: ${error}`, error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch total budget",
+    });
+  }
+})
 
 
 app.get('/',(req,res)=>{

@@ -117,3 +117,55 @@
     grid-template-columns: repeat(1, 1fr);
   }
 }
+
+
+/* Scroll Bar  */
+.scroll-box {
+  max-height: 250px; /* Set scrolling height */
+  overflow-y: auto;
+  padding-right: 6px;
+  margin-top: 10px;
+}
+
+.scroll-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scroll-box::-webkit-scrollbar-thumb {
+  background: #7a7a7a;
+  border-radius: 10px;
+}
+
+.scroll-box::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f8f8;
+  margin: 6px 0;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.amount {
+  font-weight: 700;
+  color: #222;
+}
+
+.muted {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.amount{
+  color: red;
+}
