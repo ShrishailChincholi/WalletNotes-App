@@ -1,0 +1,119 @@
+/* Container Layout */
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Card Style */
+.card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+}
+
+/* Section Title */
+.card h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+/* Overview Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+/* Stats */
+.stat {
+  background: #f4f6fb;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.label {
+  font-size: 14px;
+  color: #555;
+}
+
+.value {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.value.spent {
+  color: #d6336c;
+}
+
+.value.remaining {
+  color: #2b8a3e;
+}
+
+/* Recent List */
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.amount {
+  font-weight: bold;
+  font-size: 18px;
+  color: #343a40;
+}
+
+.small {
+  font-size: 12px;
+}
+
+.muted {
+  color: #666;
+}
+
+/* Buttons */
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  background: #4c6ef5;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #3b5bdb;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
