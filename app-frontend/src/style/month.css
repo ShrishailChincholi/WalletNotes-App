@@ -1,0 +1,100 @@
+/* 🔹 Page Centering */
+.monthly-report-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto; /* Center the container */
+  padding: 20px;
+  text-align: center; /* Make headings centered */
+}
+
+/* 🔹 Monthly Summary Card */
+.monthly-total-box {
+  background: linear-gradient(135deg, #4b4bf7, #7068ff);
+  color: white;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  font-size: 18px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+/* 🔹 Expense List Section */
+.list-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+}
+
+/* 🔹 Expense Cards */
+.expense-list {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.expense-item {
+  background: #ffffff;
+  margin: 12px auto;
+  padding: 15px;
+  width: 90%;
+  max-width: 550px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.expense-item strong {
+  font-size: 16px;
+}
+
+.expense-item .date {
+  font-size: 12px;
+  color: #666;
+}
+
+.amount {
+  font-size: 18px;
+  font-weight: bold;
+  color: #d83d3d;
+}
+
+/* No data text */
+.no-data {
+  font-size: 16px;
+  margin-top: 10px;
+  color: #888;
+}
+
+/* 🔹 Right Sidebar (Navbar on Right) */
+.right-navbar {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%); /* Center vertically */
+  width: 180px;
+  background: #f5f5ff;
+  padding: 20px 10px;
+  border-radius: 20px 0 0 20px;
+  box-shadow: -3px 0 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.right-navbar a {
+  display: block;
+  padding: 10px;
+  margin: 8px 0;
+  background: #4b4bf7;
+  color: white;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.right-navbar a:hover {
+  background: #302fcf;
+  scale: 1.05;
+}

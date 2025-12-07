@@ -4,6 +4,7 @@ import "./style/Addexpes.css"
 import "./style/Savinggoals.css"
 import "./style/allnotes.css"
 import "./style/spend.css"
+import "./style/month.css"
 import Navbar from "./components/Navbar"
 // import AddExpense from "./pages/AddExpense"
 import MonthlyTotal from "./pages/viewExpe"
@@ -13,6 +14,7 @@ import TotalExpenses from "./pages/viewExpe"
 import SavingGoals from "./pages/Savinggoals"
 import AllNotes from "./pages/Allnotes"
 import SpendingLimits from "./pages/spendLimt"
+import MonthlyReport from "./pages/monthlyreport"
 function App() {
 
   return (
@@ -28,6 +30,7 @@ function App() {
           <Route path="/notes/all" element={<AllNotes/>}/>
           <Route path="/goals/saving" element={<SavingGoals/>}/>
           <Route path="/goals/spending-limit" element={<SpendingLimits/>}/>
+          <Route path="/reports/monthly" element={<MonthlyReport/>}/>
         </Routes>
       </BrowserRouter>
     </>
