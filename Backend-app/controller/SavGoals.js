@@ -22,5 +22,5 @@ const SavingGoalsController = async (req, res) => {
 }
 
 
-module.exports = SavingGoalsController
+module.exports = SavingGoalsController;
 

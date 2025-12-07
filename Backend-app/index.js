@@ -7,6 +7,7 @@ const routernotes = require('./Router/Addnotes');
 const ExpenseRouter = require('./Router/Expenses');
 const goalsrouter = require('./Router/Savingoals');
 const SavingGoalsModules = require('./modules/SavingGolas');
+const SpendBugetRoute = require('./Router/spendBuget');
 
 // DB Contection
 ConnenctDB();
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use('/expenses/add',ExpenseRouter);
 app.use('/notes/add',routernotes)
 app.use('/goals/saving',goalsrouter)
+app.use('/goals/spending-limit',SpendBugetRoute)
 app.get('/expenses', async (req, res) => {
   try {
     const data = await Db.find();
