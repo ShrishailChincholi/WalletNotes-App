@@ -9,9 +9,9 @@ export default defineConfig({
       '/exp':{
         target:` http://localhost:6060`,
         changeOrigin:true,
-
       }
     },
-     historyApiFallback: true
+     historyApiFallback: true,
+  
   }
 })

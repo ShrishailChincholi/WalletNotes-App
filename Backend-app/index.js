@@ -20,11 +20,11 @@ app.use(express.json());
 
 // Routers
 // app.use('/expenses/add',ExpenseRouter);
-app.use('/expenses', ExpenseRouter);
+app.use('/expenses/add', ExpenseRouter);
 app.use('/notes/add',routernotes)
 app.use('/goals/saving',goalsrouter)
 app.use('/goals/spending-limit',SpendBugetRoute)
-app.get('/expenses', async (req, res) => {
+app.get('/expenses/all', async (req, res) => {
   try {
     const data = await Db.find();
     res.json({

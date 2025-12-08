@@ -4,7 +4,7 @@ const TotalExpenses = () => {
   const [expenses, setExpenses] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:6060/expenses")
+    fetch("http://localhost:6060/expenses/all")
       .then((res) => res.json())
        .then((data) => {
         // Backend returns { success: true, data: [...] }
