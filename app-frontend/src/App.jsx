@@ -6,6 +6,7 @@ import "./style/allnotes.css"
 import "./style/spend.css"
 import "./style/month.css"
 import "./style/download.css"
+import "./style/dashboard.css"
 import Navbar from "./components/Navbar"
 // import AddExpense from "./pages/AddExpense"
 import MonthlyTotal from "./pages/viewExpe"
@@ -17,6 +18,7 @@ import AllNotes from "./pages/Allnotes"
 import SpendingLimits from "./pages/spendLimt"
 import MonthlyReport from "./pages/monthlyreport"
 import DownloadReport from "./pages/downloadreport"
+import Dashboard from "./pages/dashboard"
 
 function App() {
 
@@ -26,6 +28,7 @@ function App() {
         <Navbar />
 
         <Routes> 
+           <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/expenses/add" element={<AddExpense/>}/>
           {/* <Route path="/expenses/all" element={<MonthlyTotal/>}/> */}
           <Route path="/expenses/all" element={<TotalExpenses/>}/>
@@ -35,6 +38,7 @@ function App() {
           <Route path="/goals/spending-limit" element={<SpendingLimits/>}/>
           <Route path="/reports/monthly" element={<MonthlyReport/>}/>
           <Route path="/reports/pdf" element={<DownloadReport/>}/>
+         
         </Routes>
       </BrowserRouter>
     </>

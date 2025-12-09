@@ -4,7 +4,7 @@ const MonthlyReport = () => {
   const [expenses, setExpenses] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:6060/expenses")
+    fetch("http://localhost:6060/expenses/all")
       .then((res) => res.json())
       .then((data) => {
         if (data.success && Array.isArray(data.data)) {

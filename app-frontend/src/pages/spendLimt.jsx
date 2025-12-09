@@ -11,7 +11,7 @@ const SpendingLimits = () => {
   // Fetch all expenses from backend
   const fetchExpenses = async () => {
     try {
-      const res = await fetch("http://localhost:6060/expenses");
+      const res = await fetch("http://localhost:6060/expenses/all");
       const data = await res.json();
       console.log("Fetched Expenses:", data);
 
