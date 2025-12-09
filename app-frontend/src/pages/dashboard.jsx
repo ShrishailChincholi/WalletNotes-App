@@ -51,13 +51,15 @@ const Dashboard = () => {
     }
   };
 
+//Fetach Notes all 
   const fetchNotesCount = async () => {
     try {
       const res = await fetch("http://localhost:6060/notes/add");
       const data = await res.json();
-      if (data.success && Array.isArray(data.data)) {
-        setNotesCount(data.data.length);
-      }
+     if (Array.isArray(data)) { // FIXED Condition
+      setNotesCount(data.length);
+      console.log("Notes Count:", data.length);
+    }
     } catch (error) {
       console.error("Error fetching notes:", error);
     }
@@ -72,38 +74,6 @@ const Dashboard = () => {
   }, []);
 
   return (
-    // <div className="dashboard-container">
-    //   <h1 className="dashboard-title">Dashboard Overview</h1>
-
-    //   <div className="cards-grid">
-    //     <div className="card">
-    //       <h3>Total Expenses</h3>
-    //       <p>₹ {totalExpenses}</p>
-    //     </div>
-
-    //     <div className="card">
-    //       <h3>Saving Goals</h3>
-    //       <p>{savingGoals} Goals</p>
-    //     </div>
-
-    //     <div className="card">
-    //       <h3>Spending Limit</h3>
-    //       <p>₹ {spendingLimit}</p>
-    //     </div>
-
-    //     <div className="card">
-    //       <h3>Total Notes</h3>
-    //       <p>{notesCount} Notes</p>
-    //     </div>
-    //   </div>
-
-    //   <div className="dashboard-btns">
-    //     <Link to="/expenses/add" className="btn">Add Expense</Link>
-    //     <Link to="/notes/add" className="btn">Add Notes</Link>
-    //     <Link to="/goals/saving" className="btn">Saving Goals</Link>
-    //     <Link to="/goals/spending-limit" className="btn">Budget Limit</Link>
-    //   </div>
-    // </div>
      <div className="dashboard-container-dash">
       <h1 className="dashboard-title-dash">Dashboard Overview</h1>
 

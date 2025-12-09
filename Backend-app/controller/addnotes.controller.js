@@ -34,7 +34,10 @@ const getSingleNote = async (req, res) => {
         if (!note) {
             return res.status(404).json({ message: "Note not found" });
         }
-        res.json(note);
+        res.json({
+            success:true,
+            data:note
+        });
     } catch (error) {
         res.status(500).json({ message: "Server Error", error });
     }

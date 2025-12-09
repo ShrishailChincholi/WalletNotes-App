@@ -8,8 +8,6 @@ import "./style/month.css"
 import "./style/download.css"
 import "./style/dashboard.css"
 import Navbar from "./components/Navbar"
-// import AddExpense from "./pages/AddExpense"
-import MonthlyTotal from "./pages/viewExpe"
 import AddNote from "./pages/Addnotes"
 import AddExpense from "./pages/AddExpense"
 import TotalExpenses from "./pages/viewExpe"
@@ -30,7 +28,6 @@ function App() {
         <Routes> 
            <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/expenses/add" element={<AddExpense/>}/>
-          {/* <Route path="/expenses/all" element={<MonthlyTotal/>}/> */}
           <Route path="/expenses/all" element={<TotalExpenses/>}/>
           <Route path="/notes/add" element={<AddNote/>}/>
           <Route path="/notes/all" element={<AllNotes/>}/>
