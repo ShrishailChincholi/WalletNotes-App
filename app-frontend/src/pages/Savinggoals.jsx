@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const SavingGoals = () => {
   const [goals, setGoals] = useState([]);
+  const [editingId, setEditingId] = useState(null)
   const [formData, setFormData] = useState({
     title: "",
     targetAmount: "",
@@ -26,11 +27,21 @@ const SavingGoals = () => {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     loadGoals();
   }, []);
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
+
+  function handleEdite(goal) {
+    setEditingId(goal.id);
+    setFormData({
+      title: goal.title,
+      targetAmount: goal.targetAmount,
+      savedAmount: goal.savedAmount,
+    })
   }
 
   async function handleSubmit(e) {
