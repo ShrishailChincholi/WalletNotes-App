@@ -1,3 +1,4 @@
+const SavingGolas = require("../modules/SavingGolas");
 const SavingGoalsModules = require("../modules/SavingGolas");
 
 const SavingGoalsController = async (req, res) => {
@@ -8,7 +9,9 @@ const SavingGoalsController = async (req, res) => {
             targetAmount: targetAmount,
             savedAmount: savedAmount
         })
+       
         await newData.save();
+
         res.status(201).json({
             success: true,
             message: "SaveGoals Saved Successfully"
@@ -41,9 +44,10 @@ const DeleteGoals = async (req, res) => {
     try {
         const id = req.params.id;
 
-        await SavingModel.findByIdAndDelete(id);
+        await SavingGoalsModules.findByIdAndDelete(id);
 
         res.json({ success: true, message: "Goal Deleted Successfully!" });
+        console.log("Goals Dleted ")
     } catch (error) {
         res.status(500).json({
             success: false,
