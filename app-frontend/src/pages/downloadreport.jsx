@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable"; // Correct import
 
+
 const DownloadReport = () => {
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
   const now = new Date();
 
   useEffect(() => {
-    fetch("http://localhost:6060/expenses")
+    fetch("http://localhost:6060/expenses/all")
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
@@ -64,7 +65,7 @@ const DownloadReport = () => {
     });
 
     const endY = doc.lastAutoTable.finalY || 40;
-    doc.text(`Total: ₹ ${monthlyTotal}`, 14, endY + 10);
+    doc.text(`Total:  Rs ${monthlyTotal}`, 14, endY + 10);
 
     doc.save("Monthly_Expense_Report.pdf");
   };

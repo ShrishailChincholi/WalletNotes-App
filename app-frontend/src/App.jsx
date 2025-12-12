@@ -25,17 +25,18 @@ function App() {
       <BrowserRouter>
         <Navbar />
 
-        <Routes> 
-           <Route path="/dashboard" element={<Dashboard/>}/>
-          <Route path="/expenses/add" element={<AddExpense/>}/>
-          <Route path="/expenses/all" element={<TotalExpenses/>}/>
-          <Route path="/notes/add" element={<AddNote/>}/>
-          <Route path="/notes/all" element={<AllNotes/>}/>
-          <Route path="/goals/saving" element={<SavingGoals/>}/>
-          <Route path="/goals/spending-limit" element={<SpendingLimits/>}/>
-          <Route path="/reports/monthly" element={<MonthlyReport/>}/>
-          <Route path="/reports/pdf" element={<DownloadReport/>}/>
-         
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/expenses/add" element={<AddExpense />} />
+          <Route path="/expenses/all" element={<TotalExpenses />} />
+          <Route path="/notes/add" element={<AddNote />} />
+          <Route path="/notes/all" element={<AllNotes />} />
+          <Route path="/goals/saving" element={<SavingGoals />} />
+          <Route path="/goals/spending-limit" element={<SpendingLimits />} />
+          <Route path="/reports/monthly" element={<MonthlyReport />} />
+          <Route path="/reports/pdf" element={<DownloadReport />} />
+
         </Routes>
       </BrowserRouter>
     </>
