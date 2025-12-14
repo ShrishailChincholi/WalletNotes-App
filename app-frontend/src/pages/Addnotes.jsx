@@ -16,6 +16,7 @@ const AddNote = () => {
 
   async function fetchNote() {
     try {
+      //  Fetch the backend to frontend
       const res = await fetch(`http://localhost:6060/notes/add/${noteId}`);
       const data = await res.json();
       setFormData({
@@ -39,6 +40,8 @@ const AddNote = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
+
+  // Save and Update notes 
   async function handleSubmit(e) {
     e.preventDefault();
 

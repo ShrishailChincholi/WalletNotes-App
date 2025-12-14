@@ -36,6 +36,7 @@ const DownloadReport = () => {
     0
   );
 
+  // dowloadPDF   funcation
   const downloadPDF = () => {
     const doc = new jsPDF();
 
@@ -52,6 +53,7 @@ const DownloadReport = () => {
       return doc.save("Monthly_Expense_Report.pdf");
     }
 
+    // DownloadPDF format
     autoTable(doc, {
       head: [["#", "Title", "Amount", "Method", "Date"]],
       body: monthlyExpenses.map((exp, i) => [

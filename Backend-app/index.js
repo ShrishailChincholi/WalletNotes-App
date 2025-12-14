@@ -21,9 +21,11 @@ app.use(express.json());
 // Routers
 // app.use('/expenses/add',ExpenseRouter);
 app.use('/expenses/add', ExpenseRouter);
-app.use('/notes/add',routernotes)
-app.use('/goals/saving',goalsrouter)
-app.use('/goals/spending-limit',SpendBugetRoute)
+app.use('/notes/add',routernotes);
+app.use('/goals/saving',goalsrouter);
+app.use('/goals/spending-limit',SpendBugetRoute);
+
+// All expenses get
 app.get('/expenses/all', async (req, res) => {
   try {
     const data = await Db.find();
@@ -37,6 +39,7 @@ app.get('/expenses/all', async (req, res) => {
   }
 });
 
+//Goals get
 app.get("/goals/saving", async (req, res) => {
   try {
     const goals = await SavingGoalsModules.find();
@@ -51,6 +54,7 @@ app.get("/goals/saving", async (req, res) => {
   }
 });
 
+//spedinglimit
 app.get("/goals/spending-limit",async (req, res) => {
   try {
     // Fetch the latest saved budget
@@ -75,6 +79,8 @@ app.get('/',(req,res)=>{
 });
 
 const PORT = 6060 || 4000;
+
+// Sever Listen
 app.listen(PORT,()=>{
     console.log(`Server Is Running in http://localhost:${PORT} `)
 });
