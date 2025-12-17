@@ -9,6 +9,7 @@ const goalsrouter = require('./Router/Savingoals');
 const SavingGoalsModules = require('./modules/SavingGolas');
 const SpendBugetRoute = require('./Router/spendBuget');
 const BuddgetModule = require('./modules/BuddgetModule');
+const AuthorizationRouter = require('./Router/Auth');
 
 // DB Contection
 ConnenctDB();
@@ -24,6 +25,7 @@ app.use('/expenses/add', ExpenseRouter);
 app.use('/notes/add',routernotes);
 app.use('/goals/saving',goalsrouter);
 app.use('/goals/spending-limit',SpendBugetRoute);
+app.use('/',AuthorizationRouter);
 
 // All expenses get
 app.get('/expenses/all', async (req, res) => {
