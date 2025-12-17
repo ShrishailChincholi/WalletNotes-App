@@ -39,8 +39,46 @@ const Register = () => {
             console.error(error);
             setMessage("❌ Server error");
         }
-    }
+    };
 
+    return (
+        <div className="register-container">
+            <form className="register-form" onSubmit={handleSubmit}>
+                <h2>Create Account</h2>
+
+                {message && <p className="message">{message}</p>}
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Full Name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                />
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                />
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                />
+
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    );
 }
 
-export default Register
+export default Register;
