@@ -25,7 +25,7 @@ app.use('/expenses/add', ExpenseRouter);
 app.use('/notes/add',routernotes);
 app.use('/goals/saving',goalsrouter);
 app.use('/goals/spending-limit',SpendBugetRoute);
-app.use('/',AuthorizationRouter);
+app.use('/register',AuthorizationRouter);
 
 // All expenses get
 app.get('/expenses/all', async (req, res) => {

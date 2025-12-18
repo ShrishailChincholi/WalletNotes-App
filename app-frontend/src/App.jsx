@@ -8,8 +8,7 @@ import "./style/month.css"
 import "./style/download.css"
 import "./style/dashboard.css"
 import "./style/login&page.css"
-import Navbar from "./components/Navbar"
-import AddNote from "./pages/Addnotes"
+
 import AddExpense from "./pages/AddExpense"
 import TotalExpenses from "./pages/viewExpe"
 import SavingGoals from "./pages/Savinggoals"
@@ -19,25 +18,36 @@ import MonthlyReport from "./pages/monthlyreport"
 import DownloadReport from "./pages/downloadreport"
 import Dashboard from "./pages/dashboard"
 import Register from "./pages/login&page"
+import AuthLayout from "./layout/AuthLayout"
+import MainLayout from "./layout/MainLayout"
+
+// Main Page 
+
 
 function App() {
 
   return (
     <>
       <BrowserRouter>
-        <Navbar />
-
         <Routes>
-          <Route path="/" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/expenses/add" element={<AddExpense />} />
-          <Route path="/expenses/all" element={<TotalExpenses />} />
-          <Route path="/notes/add" element={<AddNote />} />
-          <Route path="/notes/all" element={<AllNotes />} />
-          <Route path="/goals/saving" element={<SavingGoals />} />
-          <Route path="/goals/spending-limit" element={<SpendingLimits />} />
-          <Route path="/reports/monthly" element={<MonthlyReport />} />
-          <Route path="/reports/pdf" element={<DownloadReport />} />
+
+      
+          <Route element={<AuthLayout />}>
+            <Route path="/" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
+
+
+          <Route element={<MainLayout />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/expenses/add" element={<AddExpense />} />
+            <Route path="/expenses/all" element={<TotalExpenses />} />
+            <Route path="/notes/add" element={<AllNotes />} />
+            <Route path="/goals/saving" element={<SavingGoals />} />
+            <Route path="/goals/spending-limit" element={<SpendingLimits />} />
+            <Route path="/reports/monthly" element={<MonthlyReport />} />
+            <Route path="/reports/pdf" element={<DownloadReport />} />
+          </Route>
 
         </Routes>
       </BrowserRouter>
