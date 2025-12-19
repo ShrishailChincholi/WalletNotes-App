@@ -33,8 +33,8 @@ function App() {
 
       
           <Route element={<AuthLayout />}>
-            <Route path="/" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/" element={<Register />} />
+            {/* <Route path="/register" element={<Register />} /> */}
           </Route>
 
 

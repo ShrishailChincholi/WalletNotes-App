@@ -76,6 +76,11 @@ const Register = () => {
                 />
 
                 <button type="submit">Register</button>
+
+                <p className='auth-switch'>
+                   I have already have an account
+                   <Link to='/login'>Login</Link>
+                </p>
             </form>
         </div>
     );
