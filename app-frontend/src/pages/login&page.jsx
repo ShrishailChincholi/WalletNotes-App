@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -78,7 +79,7 @@ const Register = () => {
                 <button type="submit">Register</button>
 
                 <p className='auth-switch'>
-                   I have already have an account
+                   I have already have an account ?
                    <Link to='/login'>Login</Link>
                 </p>
             </form>
