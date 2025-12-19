@@ -8,6 +8,7 @@ import "./style/month.css"
 import "./style/download.css"
 import "./style/dashboard.css"
 import "./style/login&page.css"
+import "./style/login.css"
 
 import AddExpense from "./pages/AddExpense"
 import TotalExpenses from "./pages/viewExpe"
@@ -20,6 +21,7 @@ import Dashboard from "./pages/dashboard"
 import Register from "./pages/login&page"
 import AuthLayout from "./layout/AuthLayout"
 import MainLayout from "./layout/MainLayout"
+import Login from "./pages/login"
 
 // Main Page 
 
@@ -34,7 +36,7 @@ function App() {
       
           <Route element={<AuthLayout />}>
             <Route path="/" element={<Register />} />
-            {/* <Route path="/register" element={<Register />} /> */}
+            <Route path="/login" element={<Login />} />
           </Route>
 
 

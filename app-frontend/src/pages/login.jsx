@@ -36,6 +36,41 @@ const Login = () => {
 
     }
 
+    return (
+        <div className="register-container">
+            <form className="register-form" onSubmit={handleSubmit}>
+                <h2>Login</h2>
+
+                {message && <p className="message">{message}</p>}
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                />
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                />
+
+                <button type="submit">Login</button>
+
+                <p className="auth-switch">
+                    Don't have an account?{" "}
+                    <Link to="/">Register</Link>
+                </p>
+            </form>
+        </div>
+    );
+
 }
 
 export default Login;

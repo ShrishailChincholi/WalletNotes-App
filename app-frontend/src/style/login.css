@@ -1,0 +1,80 @@
+/* Page container */
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f4f6f8;
+}
+
+/* Login form box */
+.register-form {
+  background: #ffffff;
+  padding: 30px 25px;
+  width: 340px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* Heading */
+.register-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Inputs */
+.register-form input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.register-form input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Login button */
+.register-form button {
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  border: none;
+  color: #ffffff;
+  font-size: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.register-form button:hover {
+  background: #0056b3;
+}
+
+/* Message text */
+.message {
+  text-align: center;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: green;
+}
+
+/* Register link */
+.auth-switch {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.auth-switch a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
