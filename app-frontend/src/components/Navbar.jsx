@@ -1,8 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+
+    localStorage.removeItem("token");
+
+    localStorage.removeItem("user");
+
+      navigate("/");
+  }
+
   return (
     <div className="side-nav">
+       
       <h1>Wallet-Notes</h1>
       <img src="" alt="img" />
 
@@ -19,7 +32,7 @@ function Navbar() {
             Eepenses
             <ul>
               <li>
-                <Link to="/expenses/all">All Expenses</Link> 
+                <Link to="/expenses/all">All Expenses</Link>
               </li>
               <li>
                 <Link to="/expenses/add">Add Expenses</Link>
@@ -74,7 +87,7 @@ function Navbar() {
         </ul>
       </nav>
 
-      <button>Logout</button>
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 }

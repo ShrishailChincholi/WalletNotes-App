@@ -109,3 +109,20 @@
   color: white;
   border-radius: 8px;
 }
+
+
+.logout-message {
+  background-color: #e63946;
+  color: #ffffff;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 600;
+  animation: fadeOut 1.5s ease-in-out;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
