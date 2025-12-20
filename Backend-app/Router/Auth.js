@@ -4,4 +4,5 @@ const AuthorizationRouter = express.Router();
 
 AuthorizationRouter.post('',registerUser);
 
+
 module.exports = AuthorizationRouter;
