@@ -19,22 +19,41 @@ const Login = () => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+     e.preventDefault();
+    setMessage("");
 
-        if (!formData.email || !formData.password) {
-            setMessage("All fields are required");
-            return;
-        }
+    try {
+      const res = await fetch("http://localhost:6060/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-        // Temporary success
-        setMessage("Login successful ✅");
+      const data = await res.json();
 
-        // Redirect to dashboard
-        setTimeout(() => {
-            navigate("/dashboard");
-        }, 1000);
+      if (!res.ok) {
+        setMessage(data.message || "Invalid email or password");
+        return;
+      }
 
-    }
+      // ✅ Save token
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      setMessage("Login successful ✅");
+
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 800);
+      
+
+    } catch (error) {
+      console.error(error);
+      setMessage("Server error");
+    };
+}
 
     return (
         <div className="register-container">
