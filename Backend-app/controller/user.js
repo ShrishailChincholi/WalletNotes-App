@@ -1,4 +1,6 @@
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
 const User = require("../modules/resgitermodule");
 
 const registerUser = async (req, res) => {
@@ -32,6 +34,7 @@ const registerUser = async (req, res) => {
       success: true,
       message: "User registered successfully",
     });
+    console.log("user was created")
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });

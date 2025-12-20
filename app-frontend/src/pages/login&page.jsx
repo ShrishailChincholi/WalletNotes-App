@@ -20,7 +20,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch("http://localhost:6060/auth/api/Register", {
+            const res = await fetch("http://localhost:6060/api/auth/Register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
