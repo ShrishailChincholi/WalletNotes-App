@@ -1,7 +1,9 @@
+require("dotenv").config();
+
 const express = require('express');
 const app = express();
 const ConnenctDB = require('./config/dbconnect');
-const Db  = require('./modules/ExpensesModule')
+const Db = require('./modules/ExpensesModule')
 const cors = require("cors");
 const routernotes = require('./Router/Addnotes');
 const ExpenseRouter = require('./Router/Expenses');
@@ -11,21 +13,22 @@ const SpendBugetRoute = require('./Router/spendBuget');
 const BuddgetModule = require('./modules/BuddgetModule');
 const AuthorizationRouter = require('./Router/Auth');
 
+
 // DB Contection
 ConnenctDB();
 
 // Body Parser
 app.use(cors());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Routers
 // app.use('/expenses/add',ExpenseRouter);
 app.use('/expenses/add', ExpenseRouter);
-app.use('/notes/add',routernotes);
-app.use('/goals/saving',goalsrouter);
-app.use('/goals/spending-limit',SpendBugetRoute);
-app.use('/api/auth',AuthorizationRouter);
+app.use('/notes/add', routernotes);
+app.use('/goals/saving', goalsrouter);
+app.use('/goals/spending-limit', SpendBugetRoute);
+app.use('/api/auth', AuthorizationRouter);
 
 // All expenses get
 app.get('/expenses/all', async (req, res) => {
@@ -57,7 +60,7 @@ app.get("/goals/saving", async (req, res) => {
 });
 
 //spedinglimit
-app.get("/goals/spending-limit",async (req, res) => {
+app.get("/goals/spending-limit", async (req, res) => {
   try {
     // Fetch the latest saved budget
     const budgetData = await BuddgetModule.findOne().sort({ createdAt: -1 });
@@ -76,13 +79,14 @@ app.get("/goals/spending-limit",async (req, res) => {
 })
 
 
-app.get('/',(req,res)=>{
-    res.send("Hello Iam BackEnd - App");
+app.get('/', (req, res) => {
+  res.send("Hello Iam BackEnd - App");
 });
 
 const PORT = 6060 || 4000;
 
 // Sever Listen
-app.listen(PORT,()=>{
-    console.log(`Server Is Running in http://localhost:${PORT} `)
+app.listen(PORT, () => {
+  console.log(`Server Is Running in http://localhost:${PORT} `);
+  console.log("JWT_SECRET:", process.env.JWT_SECRET ? "LOADED ✅" : "NOT LOADED ❌");
 });
