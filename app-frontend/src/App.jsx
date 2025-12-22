@@ -22,6 +22,7 @@ import Register from "./pages/login&page"
 import AuthLayout from "./layout/AuthLayout"
 import MainLayout from "./layout/MainLayout"
 import Login from "./pages/login"
+import AddNote from "./pages/Addnotes"
 
 // Main Page 
 
@@ -35,8 +36,8 @@ function App() {
 
       
           <Route element={<AuthLayout />}>
-            <Route path="/" element={<Register />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/Register" element={<Register />} />
+            <Route path="/" element={<Login />} />
           </Route>
 
 
@@ -44,11 +45,12 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/expenses/add" element={<AddExpense />} />
             <Route path="/expenses/all" element={<TotalExpenses />} />
-            <Route path="/notes/add" element={<AllNotes />} />
+            <Route path="/notes/add" element={<AddNote />} />
             <Route path="/goals/saving" element={<SavingGoals />} />
             <Route path="/goals/spending-limit" element={<SpendingLimits />} />
             <Route path="/reports/monthly" element={<MonthlyReport />} />
             <Route path="/reports/pdf" element={<DownloadReport />} />
+            <Route path="/notes/all" element={<AllNotes />} />
           </Route>
 
         </Routes>

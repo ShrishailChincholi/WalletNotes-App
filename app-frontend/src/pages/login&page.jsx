@@ -80,7 +80,7 @@ const Register = () => {
 
                 <p className='auth-switch'>
                    I have already have an account ?
-                   <Link to='/login'>Login</Link>
+                   <Link to='/'>Login</Link>
                 </p>
             </form>
         </div>
