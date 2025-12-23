@@ -9,6 +9,7 @@ import "./style/download.css"
 import "./style/dashboard.css"
 import "./style/login&page.css"
 import "./style/login.css"
+import "./style/Account.css"
 
 import AddExpense from "./pages/AddExpense"
 import TotalExpenses from "./pages/viewExpe"
@@ -23,6 +24,7 @@ import AuthLayout from "./layout/AuthLayout"
 import MainLayout from "./layout/MainLayout"
 import Login from "./pages/login"
 import AddNote from "./pages/Addnotes"
+import Account from "./pages/Account"
 
 // Main Page 
 
@@ -51,6 +53,7 @@ function App() {
             <Route path="/reports/monthly" element={<MonthlyReport />} />
             <Route path="/reports/pdf" element={<DownloadReport />} />
             <Route path="/notes/all" element={<AllNotes />} />
+            <Route path="/account" element={<Account />} />
           </Route>
 
         </Routes>
