@@ -1,60 +1,51 @@
-/* Account Css  */
 .account-container {
+  margin-left: 260px; /* space for left navbar */
+  padding: 50px 60px;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #f4f6f8;
+  background: #f9fafb;
+  color: #111827;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.account-card {
-  background: #ffffff;
-  width: 360px;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-  text-align: center;
-}
-
-.account-card h2 {
-  margin-bottom: 25px;
-  color: #333;
+.account-container h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 35px;
+  color: #1f2937;
 }
 
 .account-info {
-  text-align: left;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 .account-info label {
   display: block;
   font-size: 13px;
-  color: #777;
-  margin-bottom: 4px;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
 }
 
 .account-info p {
-  font-size: 15px;
-  color: #222;
+  font-size: 18px;
   font-weight: 600;
-  background: #f1f5f9;
-  padding: 8px;
-  border-radius: 6px;
+  color: #111827;
 }
 
 .edit-btn {
-  margin-top: 20px;
-  width: 100%;
-  padding: 10px;
-  background: #007bff;
+  margin-top: 35px;
+  padding: 10px 22px;
+  background: #2563eb;
+  color: #ffffff;
   border: none;
   border-radius: 6px;
-  color: #fff;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
 }
 
 .edit-btn:hover {
-  background: #0056b3;
+  background: #1e40af;
 }
