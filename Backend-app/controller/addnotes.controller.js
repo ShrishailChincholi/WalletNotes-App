@@ -9,6 +9,8 @@ const Addnote = async (req, res) => {
             sub: sub,
             content: content
         });
+
+        //Save The Data
         await newdata.save();
         res.status(201).json({
             success: true,
@@ -35,8 +37,8 @@ const getSingleNote = async (req, res) => {
             return res.status(404).json({ message: "Note not found" });
         }
         res.json({
-            success:true,
-            data:note
+            success: true,
+            data: note
         });
     } catch (error) {
         res.status(500).json({ message: "Server Error", error });
@@ -45,36 +47,41 @@ const getSingleNote = async (req, res) => {
 
 
 // Update the notes
-const updateNotes = async (req,res) => {
+const updateNotes = async (req, res) => {
     try {
-         const id = req.params.id;
+        const id = req.params.id;
 
-    const updatedNote = await AddnoteModule.findByIdAndUpdate(
-      id,
-      req.body,
-      { new: true, runValidators: true }
-    );
 
-    if (!updatedNote) {
-      return res.status(404).json({ success: false, message: "Note not found" });
-    }
+        // Find By by Id
+        const updatedNote = await AddnoteModule.findByIdAndUpdate(
+            id,
+            req.body,
+            { new: true, runValidators: true }
+        );
 
-    res.json({ success: true, message: "Note Updated!", data: updatedNote });
+
+
+        // If note is not updated
+        if (!updatedNote) {
+            return res.status(404).json({ success: false, message: "Note not found" });
+        }
+
+        res.json({ success: true, message: "Note Updated!", data: updatedNote });
     } catch (error) {
-         res.status(500).json({ success: false, error });
-         console.log("Not Updateing Date ")
+        res.status(500).json({ success: false, error });
+        console.log("Not Updateing Date ")
     }
 }
 
 // Delete The notes 
 const deleteNote = async (req, res) => {
-  try {
-    const id = req.params.id;
-    await AddnoteModule.findByIdAndDelete(id);
-    res.json({ success: true, message: "Note Deleted!" });
-  } catch (error) {
-    res.status(500).json({ success: false, error });
-  }
+    try {
+        const id = req.params.id;
+        await AddnoteModule.findByIdAndDelete(id);
+        res.json({ success: true, message: "Note Deleted!" });
+    } catch (error) {
+        res.status(500).json({ success: false, error });
+    }
 };
 
 module.exports = {

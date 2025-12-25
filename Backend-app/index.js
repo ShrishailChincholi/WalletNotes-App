@@ -30,7 +30,7 @@ app.use('/goals/saving', goalsrouter);
 app.use('/goals/spending-limit', SpendBugetRoute);
 app.use('/api/auth', AuthorizationRouter);
 
-// All expenses get
+// All expenses get all data , and send to frontend
 app.get('/expenses/all', async (req, res) => {
   try {
     const data = await Db.find();
@@ -44,7 +44,7 @@ app.get('/expenses/all', async (req, res) => {
   }
 });
 
-//Goals get
+//Goals get all data , and send to frontend
 app.get("/goals/saving", async (req, res) => {
   try {
     const goals = await SavingGoalsModules.find();
@@ -59,7 +59,7 @@ app.get("/goals/saving", async (req, res) => {
   }
 });
 
-//spedinglimit
+//spedinglimit Get the all data , and send to frontend
 app.get("/goals/spending-limit", async (req, res) => {
   try {
     // Fetch the latest saved budget
