@@ -17,18 +17,18 @@ const ExpensesModule = mongoose.Schema(
         },
         Date: {
             type: Date,
-            default:Date.now
+            default: Date.now
         },
-        about:{
-            type:String,
+        about: {
+            type: String,
             require: true
         },
-        userId:{
-            type:mongoose.Schema.type.ObjectId,
-            ref:"User",
-            require:true,
+        userId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            require: true,
         },
     }
 )
 
-module.exports = mongoose.model("Expense",ExpensesModule)
+module.exports = mongoose.model("Expense", ExpensesModule)

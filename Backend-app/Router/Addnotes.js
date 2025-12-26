@@ -3,12 +3,13 @@ const {Addnote,getnotes,updateNotes,
     deleteNote,
     getSingleNote,
 } = require('../controller/addnotes.controller');
+const authmiddleware = require('../middleware/auth');
 const routernotes = express.Router();
 
-routernotes.post('/',Addnote);
-routernotes.get('/',getnotes);
-routernotes.get('/:id',getSingleNote);
-routernotes.put("/:id",updateNotes);
-routernotes.delete('/:id',deleteNote)
+routernotes.post('/',authmiddleware,Addnote);
+routernotes.get('/',authmiddleware,getnotes);
+routernotes.get('/:id',authmiddleware,getSingleNote);
+routernotes.put("/:id",authmiddleware,updateNotes);
+routernotes.delete('/:id',authmiddleware,deleteNote)
 
 module.exports = routernotes;

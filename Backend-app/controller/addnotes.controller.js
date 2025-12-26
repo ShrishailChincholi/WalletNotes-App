@@ -35,7 +35,12 @@ const getnotes =
 // Get a single routes for edite
 const getSingleNote = async (req, res) => {
     try {
-        const note = await AddnoteModule.findById(req.params.id);
+        // const note = await AddnoteModule.findById(req.params.id);
+
+        const note = await AddnoteModule.findOne({
+            _id: req.params.id,
+            userId: req.userId
+        });
         if (!note) {
             return res.status(404).json({ message: "Note not found" });
         }
@@ -56,8 +61,14 @@ const updateNotes = async (req, res) => {
 
 
         // Find By by Id
-        const updatedNote = await AddnoteModule.findByIdAndUpdate(
-            id,
+        // const updatedNote = await AddnoteModule.findByIdAndUpdate(
+        //     id,
+        //     req.body,
+        //     { new: true, runValidators: true }
+        // );
+
+        const updatedNote = await AddnoteModule.findOneAndUpdate(
+            { _id: req.params.id, userId: req.userId },
             req.body,
             { new: true, runValidators: true }
         );
@@ -79,9 +90,16 @@ const updateNotes = async (req, res) => {
 // Delete The notes 
 const deleteNote = async (req, res) => {
     try {
-        const id = req.params.id;
-        await AddnoteModule.findByIdAndDelete(id);
-        res.json({ success: true, message: "Note Deleted!" });
+        const deleted = await AddnoteModule.findOneAndDelete({
+            _id: req.params.id,
+            userId: req.userId
+        });
+
+        if (!deleted) {
+            return res.status(404).json({ message: "Note not found" });
+        }
+
+        res.json({ success: true, message: "Note deleted" });
     } catch (error) {
         res.status(500).json({ success: false, error });
     }
