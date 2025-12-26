@@ -7,7 +7,10 @@ const Addnote = async (req, res) => {
         const newdata = new AddnoteModule({
             title: title,
             sub: sub,
-            content: content
+            content: content,
+
+            //geying Id JWT
+            userId: req.userId,
         });
 
         //Save The Data
