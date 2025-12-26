@@ -4,7 +4,8 @@ const SpendBugetController = async (req, res) => {
     try {
         const { budget } = req.body;
         const Data = new BuddgetModule({
-            budget: budget
+            budget: budget,
+            userId: req.userId
         })
 
         await Data.save();

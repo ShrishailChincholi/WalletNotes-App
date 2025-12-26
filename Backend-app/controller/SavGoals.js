@@ -7,7 +7,9 @@ const SavingGoalsController = async (req, res) => {
         const newData = new SavingGoalsModules({
             title: title,
             targetAmount: targetAmount,
-            savedAmount: savedAmount
+            savedAmount: savedAmount,
+
+            userId:req.userId
         })
        
         await newData.save();
