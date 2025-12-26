@@ -22,7 +22,12 @@ const ExpensesModule = mongoose.Schema(
         about:{
             type:String,
             require: true
-        }
+        },
+        userId:{
+            type:mongoose.Schema.type.ObjectId,
+            ref:"User",
+            require:true,
+        },
     }
 )
 

@@ -9,7 +9,11 @@ const ExpenseAdd = async (req, res) => {
             paymentMethod: paymentMethod,
             Date: Date,
             about: about,
+
+            userId:req.userId
         })
+
+
         await AddNewExp.save();
         res.status(201).json({
             success: true,
