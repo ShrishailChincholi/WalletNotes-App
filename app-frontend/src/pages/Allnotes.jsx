@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { data, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 const AllNotes = () => {
   const [notes, setNotes] = useState([]);
@@ -23,7 +23,7 @@ const AllNotes = () => {
         console.log("Unauthorized geting allnotes ")
       };
 
-      setNotes(data.data) // Onlu user notes show
+      setNotes(data.data || []) // Onlu user notes show
     } catch (error) {
       console.log("Erron Fetching notes:", error)
     }
@@ -44,6 +44,7 @@ const AllNotes = () => {
 
       });
       console.log("Deleted")
+      const data = await res.json()
 
       if (!res.ok) {
         alert(data.message || "Delete Failed;")

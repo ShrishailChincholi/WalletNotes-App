@@ -4,6 +4,21 @@ const AddnoteModule = require('../modules/Addnote.module');
 const Addnote = async (req, res) => {
     try {
         const { title, sub, content } = req.body;
+
+        // Validation
+        if (!title || !sub || !content) {
+            return res.status(401).json({
+                success: false,
+                message: "All Fields are required"
+            });
+        }
+
+        if (!req.userId) {
+            return res.status(401).json({
+                success: false,
+                message: "Unauthorized"
+            });
+        }
         const newdata = new AddnoteModule({
             title: title,
             sub: sub,

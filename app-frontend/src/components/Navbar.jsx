@@ -16,8 +16,8 @@ function Navbar() {
   return (
     <div className="side-nav">
        
-      <h1>Wallet-Notes</h1>
-      <img src="" alt="img" />
+      <h1>Wallet-Noates</h1>
+      <img src="NULL" alt="img" />
 
       <nav>
         <ul>
