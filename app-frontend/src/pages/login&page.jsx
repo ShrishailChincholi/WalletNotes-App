@@ -17,6 +17,7 @@ const Register = () => {
         });
     };
 
+    const token = localStorage.getItem("token")
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -24,6 +25,7 @@ const Register = () => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
                 },
                 body: JSON.stringify(formData),
             });
@@ -79,8 +81,8 @@ const Register = () => {
                 <button type="submit">Register</button>
 
                 <p className='auth-switch'>
-                   I have already have an account ?
-                   <Link to='/'>Login</Link>
+                    I have already have an account ?
+                    <Link to='/'>Login</Link>
                 </p>
             </form>
         </div>

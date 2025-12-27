@@ -45,7 +45,10 @@ const getnotes =
     async (req, res) => {
         try {
             const notes = await AddnoteModule.find({ userId: req.userId });
-            res.json(notes);
+            res.status(200).json({
+                success: true,
+                data: notes,
+            });
         } catch (error) {
             console.error("Error fetching notes:", error);
             res.status(500).json({ success: false, message: "Server error" });
@@ -67,7 +70,7 @@ const getSingleNote = async (req, res) => {
         if (!note) {
             return res.status(404).json({ message: "Note not found" });
         }
-        
+
         res.json({
             success: true,
             data: note
