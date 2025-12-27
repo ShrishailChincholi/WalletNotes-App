@@ -13,11 +13,18 @@ const AddNote = () => {
   const params = new URLSearchParams(location.search);
   const noteId = params.get("id");
 
+  const token = localStorage.getItem('token')
 
   async function fetchNote() {
     try {
       //  Fetch the backend to frontend
-      const res = await fetch(`http://localhost:6060/notes/add/${noteId}`);
+      const res = await fetch(`http://localhost:6060/notes/add/${noteId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
       const data = await res.json();
       setFormData({
         title: data.title,
@@ -53,7 +60,10 @@ const AddNote = () => {
     try {
       await fetch(url, {
         method,
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify(formData),
       });
 

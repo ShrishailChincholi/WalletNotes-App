@@ -1,15 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
 
 const AllNotes = () => {
   const [notes, setNotes] = useState([]);
   const navigate = useNavigate();
 
+  const token = localStorage.getItem("token")
+
   async function fectNotes() {
     try {
-      const res = await fetch("http://localhost:6060/notes/add");
+      const res = await fetch("http://localhost:6060/notes/add",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        }
+      );
       const data = await res.json();
-      setNotes(data)
+
+      if (!res.ok) {
+        alert(data.message || "Unauthorized");
+        console.log("Unauthorized geting allnotes ")
+      };
+
+      setNotes(data.data) // Onlu user notes show
     } catch (error) {
       console.log("Erron Fetching notes:", error)
     }
@@ -22,11 +36,18 @@ const AllNotes = () => {
 
   async function handleDelete(id) {
     try {
-      await fetch(`http://localhost:6060/notes/add/${id}`, {
+     const res = await fetch(`http://localhost:6060/notes/add/${id}`, {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
 
       });
       console.log("Deleted")
+
+      if (!res.ok) {
+        alert(data.message || "Delete Failed;")
+      }
       fectNotes(); // Refresh UI
     } catch (error) {
       console.log("Error Deleting:", error);
