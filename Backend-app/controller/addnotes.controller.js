@@ -32,7 +32,8 @@ const Addnote = async (req, res) => {
         await newdata.save();
         res.status(201).json({
             success: true,
-            message: "Notes Saved Successfully!"
+            message: "Notes Saved Successfully!",
+            data: newdata,
         });
         console.log("Note saved Successfully");
     } catch (error) {
@@ -42,8 +43,13 @@ const Addnote = async (req, res) => {
 
 const getnotes =
     async (req, res) => {
-        const notes = await AddnoteModule.find();
-        res.json(notes);
+        try {
+            const notes = await AddnoteModule.find({ userId: req.userId });
+            res.json(notes);
+        } catch (error) {
+            console.error("Error fetching notes:", error);
+            res.status(500).json({ success: false, message: "Server error" });
+        }
     };
 
 
@@ -56,9 +62,12 @@ const getSingleNote = async (req, res) => {
             _id: req.params.id,
             userId: req.userId
         });
+
+
         if (!note) {
             return res.status(404).json({ message: "Note not found" });
         }
+        
         res.json({
             success: true,
             data: note

@@ -6,6 +6,7 @@ const AllNotes = () => {
   const navigate = useNavigate();
 
   const token = localStorage.getItem("token")
+  console.log("token ",token);
 
   async function fectNotes() {
     try {
