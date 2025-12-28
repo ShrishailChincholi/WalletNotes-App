@@ -18,15 +18,10 @@ const AuthorizationRouter = require('./Router/Auth');
 ConnenctDB();
 
 // Body Parser
-app.use(cors({
-  origin:"http://localhost:5050",
-  credentials:true,
-  allowedHeaders:["Content-Type", "Authorization"],
-  methods:["GET","POST","PUT","DELETE","OPTIONS"]
-}));
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// app.options("*",cors());
+
 
 // Routers
 // app.use('/expenses/add',ExpenseRouter);

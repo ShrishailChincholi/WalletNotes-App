@@ -17,7 +17,7 @@ const Register = () => {
         });
     };
 
-    const token = localStorage.getItem("token")
+    // const token = localStorage.getItem("token")
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -25,7 +25,7 @@ const Register = () => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`
+                    // Authorization: `Bearer ${token}`
                 },
                 body: JSON.stringify(formData),
             });
