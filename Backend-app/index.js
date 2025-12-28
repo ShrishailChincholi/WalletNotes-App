@@ -15,9 +15,11 @@ const AuthorizationRouter = require('./Router/Auth');
 
 
 // DB Contection
+/* ================= DATABASE ================= */
 ConnenctDB();
 
 // Body Parser
+/* ================= MIDDLEWARE ================= */
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -80,10 +82,13 @@ app.get("/goals/spending-limit", async (req, res) => {
 })
 
 
+/* ================= TEST ROUTE ================= */
 app.get('/', (req, res) => {
   res.send("Hello Iam BackEnd - App");
 });
 
+
+/* ================= SERVER ================= */
 const PORT = 6060 || 4000;
 
 // Sever Listen
