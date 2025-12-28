@@ -41,7 +41,7 @@ const registerUser = async (req, res) => {
   }
 };
 
-const login = async (req,res) => {
+const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -82,7 +82,39 @@ const login = async (req,res) => {
   }
 }
 
-module.exports = { 
-  registerUser ,
-  login
+const updataeuser = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const { name, email, password } = req.body;
+
+    const updateDate = {};
+    if (name) updateData.name = name;
+    if (email) updateData.email = email;
+
+    if (password) {
+      updateData.password = await bcrypt.hash(password, 10);
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      updateData,
+      { new: true }
+    ).select("-password");
+
+    res.json({
+      success: true,
+      message: "Profile updated successfully",
+      user: updatedUser,
+    });
+  } catch (error) {
+    console.error(error," ---  Error edite user profile --");
+    res.status(500).json({ message: "Server error" });
+
+  }
+}
+
+module.exports = {
+  registerUser,
+  login,
+  updataeuser   
 }
