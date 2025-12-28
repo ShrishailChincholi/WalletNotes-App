@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 const Account = () => {
   const [user, setUser] = useState(null);
+    const navigate = useNavigate();
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -33,7 +35,9 @@ const Account = () => {
         <p>{user.email}</p>
       </div>
 
-      <button className="edit-btn">Edit Profile</button>
+      <button className="edit-btn"
+      onClick={()=>navigate("/edit-profile")}
+      >Edit Profile</button>
     </div>
   )
 }
