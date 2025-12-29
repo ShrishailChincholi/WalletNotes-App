@@ -10,11 +10,12 @@ import "./style/dashboard.css"
 import "./style/login&page.css"
 import "./style/login.css"
 import "./style/Account.css"
+import "./style/editeprofile.css"
 
 import AddExpense from "./pages/AddExpense"
 import TotalExpenses from "./pages/viewExpe"
 import SavingGoals from "./pages/Savinggoals"
-import AllNotes from "./pages/Allnotesa"
+import AllNotes from "./pages/Allnotes"
 import SpendingLimits from "./pages/spendLimt"
 import MonthlyReport from "./pages/monthlyreport"
 import DownloadReport from "./pages/downloadreport"
@@ -55,7 +56,7 @@ function App() {
             <Route path="/reports/pdf" element={<DownloadReport />} />
             <Route path="/notes/all" element={<AllNotes />} />
             <Route path="/account" element={<Account />} />
-            <Route path="/account/edit" element={<EditProfile />} />
+            <Route path="/edit-profile" element={<EditProfile />} />
           </Route>
 
         </Routes>
