@@ -14,7 +14,7 @@ import "./style/Account.css"
 import AddExpense from "./pages/AddExpense"
 import TotalExpenses from "./pages/viewExpe"
 import SavingGoals from "./pages/Savinggoals"
-import AllNotes from "./pages/Allnotes"
+import AllNotes from "./pages/Allnotesa"
 import SpendingLimits from "./pages/spendLimt"
 import MonthlyReport from "./pages/monthlyreport"
 import DownloadReport from "./pages/downloadreport"
@@ -25,6 +25,7 @@ import MainLayout from "./layout/MainLayout"
 import Login from "./pages/login"
 import AddNote from "./pages/Addnotes"
 import Account from "./pages/Account"
+import EditProfile from "./pages/editeprofile"
 
 // Main Page 
 
@@ -36,7 +37,7 @@ function App() {
       <BrowserRouter>
         <Routes>
 
-      
+
           <Route element={<AuthLayout />}>
             <Route path="/Register" element={<Register />} />
             <Route path="/" element={<Login />} />
@@ -54,6 +55,7 @@ function App() {
             <Route path="/reports/pdf" element={<DownloadReport />} />
             <Route path="/notes/all" element={<AllNotes />} />
             <Route path="/account" element={<Account />} />
+            <Route path="/account/edit" element={<EditProfile />} />
           </Route>
 
         </Routes>
