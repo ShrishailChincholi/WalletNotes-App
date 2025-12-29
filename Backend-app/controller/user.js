@@ -88,16 +88,16 @@ const updataeuser = async (req, res) => {
     const { name, email, password } = req.body;
 
     const updateDate = {};
-    if (name) updateData.name = name;
-    if (email) updateData.email = email;
+    if (name) updateDate.name = name;
+    if (email) updateDate.email = email;
 
-    if (password) {
-      updateData.password = await bcrypt.hash(password, 10);
+    if (password && password.trim() !== "") {
+      updateDate.password = await bcrypt.hash(password, 10);
     }
 
     const updatedUser = await User.findByIdAndUpdate(
       userId,
-      updateData,
+      updateDate,
       { new: true }
     ).select("-password");
 

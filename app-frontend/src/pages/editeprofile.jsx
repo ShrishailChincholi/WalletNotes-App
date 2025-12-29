@@ -30,8 +30,8 @@ const EditProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("http://localhost:6060/api/auth", {
-      method: "PUT",
+    const res = await fetch("http://localhost:6060/api/auth/update", {
+      method:"PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`
