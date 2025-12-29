@@ -12,6 +12,7 @@ import "./style/login.css"
 import "./style/Account.css"
 import "./style/editeprofile.css"
 
+
 import AddExpense from "./pages/AddExpense"
 import TotalExpenses from "./pages/viewExpe"
 import SavingGoals from "./pages/Savinggoals"
@@ -28,16 +29,12 @@ import AddNote from "./pages/Addnotes"
 import Account from "./pages/Account"
 import EditProfile from "./pages/editeprofile"
 
-// Main Page 
-
-
 function App() {
 
   return (
     <>
       <BrowserRouter>
         <Routes>
-
 
           <Route element={<AuthLayout />}>
             <Route path="/Register" element={<Register />} />

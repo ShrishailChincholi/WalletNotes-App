@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -7,6 +8,7 @@ const Register = () => {
         email: "",
         password: "",
     });
+    const navigate = useNavigate();
 
     const [message, setMessage] = useState("");
 
@@ -35,6 +37,8 @@ const Register = () => {
             if (res.ok) {
                 setMessage("✅ Registration successful");
                 setFormData({ name: "", email: "", password: "" });
+                navigate("/");
+
             } else {
                 setMessage(`❌ ${data.message}`);
             }
