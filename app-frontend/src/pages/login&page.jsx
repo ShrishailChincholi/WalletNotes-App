@@ -19,7 +19,7 @@ const Register = () => {
         });
     };
 
-    // const token = localStorage.getItem("token")
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {

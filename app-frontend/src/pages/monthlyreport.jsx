@@ -14,6 +14,7 @@ const MonthlyReport = () => {
       .catch((err) => console.error("Fetch Error:", err));
   }, []);
 
+  // Get a Date and Time
   const now = new Date();
   const currentMonth = now.toLocaleString("default", { month: "long" });
 
