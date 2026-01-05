@@ -5,9 +5,7 @@ const AllNotes = () => {
   const [notes, setNotes] = useState([]);
   const navigate = useNavigate();
 
-  const token = localStorage.getItem("token")
-  console.log("token ", token);
-
+  const token = localStorage.getItem("token");
   async function fectNotes() {
     try {
       const res = await fetch("http://localhost:6060/notes/add",
@@ -18,6 +16,7 @@ const AllNotes = () => {
         }
       );
       const data = await res.json();
+      console.log("NOTES API DATA:", data);
 
       if (!res.ok) {
         alert(data.message || "Unauthorized");
@@ -26,6 +25,7 @@ const AllNotes = () => {
       };
 
       // setNotes(data.data || []) // Onlu user notes show
+      // setNotes(data?.data ?? []);
       setNotes(Array.isArray(data.data) ? data.data : []);
 
     } catch (error) {
@@ -51,9 +51,12 @@ const AllNotes = () => {
       const data = await res.json()
 
       if (!res.ok) {
-        alert(data.message || "Delete Failed;")
+        alert(data.message || "Delete Failed;");
+        return;
       }
-      fectNotes(); // Refresh UI
+
+      setNotes((prev) => prev.filter((note) => note._id !== id));
+      // fectNotes(); // Refresh UI
     } catch (error) {
       console.log("Error Deleting:", error);
     }

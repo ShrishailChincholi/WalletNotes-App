@@ -44,6 +44,7 @@ const Addnote = async (req, res) => {
 const getnotes =
     async (req, res) => {
         try {
+            console.log("USER ID from tooken :",req.userId);
             const notes = await AddnoteModule.find({ userId: req.userId });
             res.status(200).json({
                 success: true,

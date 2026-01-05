@@ -7,7 +7,7 @@ const authmiddleware = (req, res, next) => {
     }
     const authHeader = req.headers.authorization;
 
-    console.log("AUTH HEADER:", authHeader); // debug
+    // console.log("AUTH HEADER:", authHeader); // debug
 
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
