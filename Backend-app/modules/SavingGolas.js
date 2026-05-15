@@ -1,17 +1,14 @@
-const mongoose = require('mongoose');
 
-const SavingGoalsModules = mongoose.Schema(
-    {
-        title: { type: String, required: true },
-        targetAmount: { type: Number, required: true },
-        savedAmount: { type: Number, required: true },
-        useerId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-            require: true,
-        }
-    },
-    { timestamp: true }
-);
+const goalSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  goalName: String,
+  targetAmount: Number,
+  currentAmount: Number,
+ 
+});
 
-module.exports = mongoose.model("SavingGoals", SavingGoalsModules);
+module.exports = mongoose.model('SavingGoal', goalSchema);

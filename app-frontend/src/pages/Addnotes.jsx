@@ -27,9 +27,9 @@ const AddNote = () => {
       );
       const data = await res.json();
       setFormData({
-        title: data.title,
-        sub: data.sub,
-        content: data.content,
+        title: data.data.title,
+        sub: data.data.sub,
+        content: data.data.content,
       });
     } catch (err) {
       console.log("Error loading note:", err);
