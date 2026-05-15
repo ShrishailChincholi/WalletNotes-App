@@ -82,6 +82,26 @@ app.get("/goals/spending-limit", async (req, res) => {
 })
 
 
+app.get('/expenses/all', authmiddleware, async (req, res) => {
+    try {
+        // CRITICAL: Filter by userId from the authenticated user
+        const data = await Db.find({ userId: req.userId });
+        
+        res.json({
+            success: true,
+            data: data,
+            count: data.length
+        });
+        
+    } catch (err) {
+        console.error("Error fetching data:", err);
+        res.status(500).json({ 
+            success: false,
+            message: "Server error" 
+        });
+    }
+});
+
 /* ================= TEST ROUTE ================= */
 app.get('/', (req, res) => {
   res.send("Hello Iam BackEnd - App");
