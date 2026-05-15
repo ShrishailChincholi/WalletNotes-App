@@ -1,10 +1,14 @@
-const mongoose = require("mongoose");
-
-const BudgetModule = new mongoose.Schema(
-  {
-    budget: { type: Number, required: true },
+const budgetSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   },
-  { timestamps: true }
-);
+  budget: Number,
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
+});
 
-module.exports = mongoose.model("Budget", BudgetModule);
+module.exports = mongoose.model('Budget', budgetSchema);
