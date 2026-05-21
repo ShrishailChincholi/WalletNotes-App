@@ -13,6 +13,7 @@ const ExpenseRouter = express.Router();
 // Apply auth middleware to all routes
 ExpenseRouter.use(authmiddleware);
 
+
 // Define routes
 ExpenseRouter.post('/', ExpenseAdd);           // Add expense
 ExpenseRouter.get('/', GetAllExpenses);        // Get all user expenses
