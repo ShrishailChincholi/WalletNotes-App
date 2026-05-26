@@ -57,6 +57,8 @@ const AllNotes = () => {
 
       setNotes((prev) => prev.filter((note) => note._id !== id));
       // fectNotes(); // Refresh UI
+
+      console.log("FULL DATA =", data);
     } catch (error) {
       console.log("Error Deleting:", error);
     }
