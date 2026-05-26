@@ -1,7 +1,7 @@
 const express = require('express');
 const { route } = require('./Addnotes');
 const {SavingGoalsController, UpdateGoals, DeleteGoals,} = require('../controller/SavGoals');
-const authmiddleware = require('../middleware/auth');
+const authmiddleware = require('../middleware/auth.js');
 // const getGoalsController = require('../controller/SavGoals');
 const goalsrouter = express.Router();
 

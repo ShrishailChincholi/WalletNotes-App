@@ -7,7 +7,7 @@ const {
     getSingleNote,
 } = require('../controller/addnotes.controller');
 
-const authmiddleware = require('../middleware/auth');
+const authmiddleware = require('../middleware/auth.js');
 const routernotes = express.Router();
 
 routernotes.post('/', authmiddleware, Addnote);

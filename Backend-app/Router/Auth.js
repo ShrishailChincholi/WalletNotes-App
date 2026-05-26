@@ -1,6 +1,6 @@
 const express = require('express');
 const { registerUser, login, updataeuser } = require('../controller/user');
-const authmiddleware = require('../middleware/auth');
+const authmiddleware = require('../middleware/auth.js');
 const AuthorizationRouter = express.Router();
 
 AuthorizationRouter.post('/Register',registerUser);
