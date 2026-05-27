@@ -60,10 +60,13 @@ app.get('/expenses/all', authMiddleware, async (req, res) => {
 
 
 /* ================= GOALS ROUTE ================= */
-app.get("/goals/saving", async (req, res) => {
+app.get("/goals/saving", authMiddleware, async (req, res) => {
+
   try {
 
-    const goals = await SavingGoalsModules.find();
+    const goals = await SavingGoalsModules.find({
+      userId: req.userId
+    });
 
     res.json({
       success: true,
@@ -74,23 +77,26 @@ app.get("/goals/saving", async (req, res) => {
 
     console.log("Error fetching goals:", error);
 
-    res.json({
-      success: false
+    res.status(500).json({
+      success: false,
+      message: "Server Error"
     });
   }
 });
 
 
 /* ================= SPENDING LIMIT ROUTE ================= */
-app.get("/goals/spending-limit", async (req, res) => {
+app.get("/goals/spending-limit", authMiddleware, async (req, res) => {
+
   try {
 
-    // Fetch latest budget
-    const budgetData = await BuddgetModule.findOne().sort({ createdAt: -1 });
+    const budgetData = await BuddgetModule.findOne({
+      userId: req.userId
+    }).sort({ createdAt: -1 });
 
     res.status(200).json({
       success: true,
-      budget: budgetData ? budgetData.budget : 0,
+      budget: budgetData ? budgetData.amount : 0,
     });
 
   } catch (error) {
