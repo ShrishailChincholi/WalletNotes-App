@@ -1,16 +1,31 @@
 const mongoose = require('mongoose');
 
-const AddnoteModule = mongoose.Schema(
+const AddnoteModule = new mongoose.Schema(
     {
-        title:{type:String,require:true},
-        sub:{type:String,require:true},
-        content:{type:String,require:true},
-        useerId:{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"User",
-            require:true,
-        }
-    }
-)
+        title: {
+            type: String,
+            required: true
+        },
 
-module.exports = mongoose.model('Addnotes',AddnoteModule)
+        sub: {
+            type: String,
+            required: true
+        },
+
+        content: {
+            type: String,
+            required: true
+        },
+
+        userId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: true,
+        }
+    },
+    {
+        timestamps: true
+    }
+);
+
+module.exports = mongoose.model('Addnotes', AddnoteModule);
