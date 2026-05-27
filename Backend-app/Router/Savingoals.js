@@ -1,13 +1,19 @@
 const express = require('express');
-const { route } = require('./Addnotes');
-const {SavingGoalsController, UpdateGoals, DeleteGoals,} = require('../controller/SavGoals');
+
+const {
+    SavingGoalsController,
+    getGoalsController,
+    UpdateGoals,
+    DeleteGoals,
+} = require('../controller/SavGoals');
+
 const authmiddleware = require('../middleware/auth.js');
-// const getGoalsController = require('../controller/SavGoals');
+
 const goalsrouter = express.Router();
-
-goalsrouter.post('/',authmiddleware,SavingGoalsController);
-goalsrouter.put('/:id',authmiddleware,UpdateGoals);
-goalsrouter.delete('/:id',authmiddleware,DeleteGoals);
-
+goalsrouter.use(authmiddleware);
+goalsrouter.post('/', SavingGoalsController);
+goalsrouter.get('/', getGoalsController);
+goalsrouter.put('/:id', UpdateGoals);
+goalsrouter.delete('/:id', DeleteGoals);
 
 module.exports = goalsrouter;

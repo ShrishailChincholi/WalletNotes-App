@@ -1,23 +1,50 @@
-// Router/Expenses.js
+// // Router/Expenses.js
+// const express = require('express');
+// const { 
+//     ExpenseAdd, 
+//     GetAllExpenses, 
+//     UpdateExpense, 
+//     DeleteExpense 
+// } = require('../controller/expense.controllers');
+// const authmiddleware = require('../middleware/auth.js');
+
+// const ExpenseRouter = express.Router();
+
+// // Apply auth middleware to all routes
+// ExpenseRouter.use(authmiddleware);
+
+
+// // Define routes
+// ExpenseRouter.post('/', ExpenseAdd);           // Add expense
+// ExpenseRouter.get('/', GetAllExpenses);        // Get all user expenses
+// ExpenseRouter.put('/:id', UpdateExpense);      // Update expense
+// ExpenseRouter.delete('/:id', DeleteExpense);   // Delete expense
+
+// module.exports = ExpenseRouter;
+
+
 const express = require('express');
-const { 
-    ExpenseAdd, 
-    GetAllExpenses, 
-    UpdateExpense, 
-    DeleteExpense 
+
+const {
+    ExpenseAdd,
+    GetAllExpenses,
+    UpdateExpense,
+    DeleteExpense
 } = require('../controller/expense.controllers');
+
 const authmiddleware = require('../middleware/auth.js');
 
 const ExpenseRouter = express.Router();
 
-// Apply auth middleware to all routes
 ExpenseRouter.use(authmiddleware);
 
+// ROUTES
+ExpenseRouter.post('/', ExpenseAdd);
 
-// Define routes
-ExpenseRouter.post('/', ExpenseAdd);           // Add expense
-ExpenseRouter.get('/', GetAllExpenses);        // Get all user expenses
-ExpenseRouter.put('/:id', UpdateExpense);      // Update expense
-ExpenseRouter.delete('/:id', DeleteExpense);   // Delete expense
+ExpenseRouter.get('/', GetAllExpenses);
+
+ExpenseRouter.put('/:id', UpdateExpense);
+
+ExpenseRouter.delete('/:id', DeleteExpense);
 
 module.exports = ExpenseRouter;

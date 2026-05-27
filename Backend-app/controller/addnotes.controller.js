@@ -41,20 +41,49 @@ const Addnote = async (req, res) => {
     }
 }
 
-const getnotes =
-    async (req, res) => {
-        try {
-            console.log("USER ID from tooken :",req.userId);
-            const notes = await AddnoteModule.find({ userId: req.userId });
-            res.status(200).json({
-                success: true,
-                data: notes,
-            });
-        } catch (error) {
-            console.error("Error fetching notes:", error);
-            res.status(500).json({ success: false, message: "Server error" });
-        }
-    };
+// const getnotes =
+//     async (req, res) => {
+//         try {
+//             console.log("USER ID from tooken :",req.userId);
+//             const notes = await AddnoteModule.find({ userId: req.userId });
+//             res.status(200).json({
+//                 success: true,
+//                 data: notes,
+//             });
+//         } catch (error) {
+//             console.error("Error fetching notes:", error);
+//             res.status(500).json({ success: false, message: "Server error" });
+//         }
+//     };
+
+
+const getnotes = async (req, res) => {
+
+    try {
+
+        console.log("REQ.USERID =", req.userId);
+
+        const notes = await AddnoteModule.find({
+            userId: req.userId
+        });
+
+        console.log("FOUND NOTES =", notes);
+
+        res.status(200).json({
+            success: true,
+            data: notes
+        });
+
+    } catch (error) {
+
+        console.log("ERROR =", error);
+
+        res.status(500).json({
+            success: false,
+            message: "Server Error"
+        });
+    }
+};
 
 
 // Get a single routes for edite
