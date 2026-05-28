@@ -110,7 +110,6 @@ app.get("/goals/spending-limit", authMiddleware, async (req, res) => {
   }
 });
 
-
 /* ================= TEST ROUTE ================= */
 app.get('/', (req, res) => {
   res.send("Hello Iam BackEnd - App");
