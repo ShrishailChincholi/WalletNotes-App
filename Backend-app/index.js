@@ -33,6 +33,7 @@ app.use('/notes/add', routernotes);
 app.use('/goals/saving', goalsrouter);
 app.use('/goals/spending-limit', SpendBugetRoute);
 app.use('/api/auth', AuthorizationRouter);
+app.use("/uploads", express.static("uploads"));
 
 
 /* ================= EXPENSES ROUTE ================= */
