@@ -4,20 +4,37 @@ function Navbar() {
 
   const navigate = useNavigate();
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const handleLogout = () => {
 
     localStorage.removeItem("token");
-
     localStorage.removeItem("user");
 
-      navigate("/");
-  }
+    navigate("/");
+  };
 
   return (
     <div className="side-nav">
-       
-      <h1>Wallet-Noates</h1>
-      <img src="NULL" alt="img" />
+
+      {/* Profile Section */}
+      <div className="profile-nav">
+
+        <img
+          src={
+            user?.profileImage
+              ? `http://localhost:6060/${user.profileImage}`
+              : "https://via.placeholder.com/80"
+          }
+          alt="Profile"
+          className="nav-profile-img"
+        />
+
+
+
+      </div>
+
+      <h1>Wallet-Notes</h1>
 
       <nav>
         <ul>
@@ -29,7 +46,7 @@ function Navbar() {
 
           {/* Expenses */}
           <li>
-            Eepenses
+            Expenses
             <ul>
               <li>
                 <Link to="/expenses/all">All Expenses</Link>
@@ -58,17 +75,17 @@ function Navbar() {
             Goals
             <ul>
               <li>
-                <Link to="/goals/saving">Saving - Goals</Link>
+                <Link to="/goals/saving">Saving Goals</Link>
               </li>
               <li>
-                <Link to="/goals/spending-limit">Spending-limit</Link>
+                <Link to="/goals/spending-limit">Spending Limit</Link>
               </li>
             </ul>
           </li>
 
           {/* Reports */}
           <li>
-            Report
+            Reports
             <ul>
               <li>
                 <Link to="/reports/monthly">Monthly Report</Link>
@@ -87,7 +104,13 @@ function Navbar() {
         </ul>
       </nav>
 
-      <button onClick={handleLogout}>Logout</button>
+      <button
+        className="logout-btn"
+        onClick={handleLogout}
+      >
+        Logout
+      </button>
+
     </div>
   );
 }

@@ -48,7 +48,7 @@ app.get('/expenses/all', authMiddleware, async (req, res) => {
       data: data,
       count: data.length
     });
-
+    
   } catch (err) {
     console.error("Error fetching data:", err);
 

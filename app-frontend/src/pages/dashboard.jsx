@@ -11,6 +11,8 @@ const Dashboard = () => {
   // TOKEN
   const token = localStorage.getItem("token");
 
+
+  
   // ================= EXPENSES =================
   const fetchExpenses = async () => {
     try {

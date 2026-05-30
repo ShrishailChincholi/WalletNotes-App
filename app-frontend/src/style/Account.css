@@ -1,41 +1,86 @@
-.account-container {
-  margin-left: 260px; /* space for left navbar */
-  padding: 50px 60px;
-  min-height: 100vh;
-  background: #f9fafb;
-  color: #111827;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+/* ================= PROFILE IMAGE ================= */
+
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 35px;
 }
 
-.account-container h2 {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 35px;
-  color: #1f2937;
+.profile-img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #2563eb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-bottom: 15px;
 }
+
+.profile-section input[type="file"] {
+  margin-bottom: 10px;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.upload-btn {
+  padding: 10px 20px;
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upload-btn:hover {
+  background: #059669;
+}
+
+.upload-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.upload-btn:hover {
+  background: #059669;
+}
+
+/* ================= ACCOUNT INFO ================= */
 
 .account-info {
-  margin-bottom: 25px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .account-info label {
   display: block;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: #6b7280;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
   text-transform: uppercase;
-  letter-spacing: 0.6px;
 }
 
 .account-info p {
   font-size: 18px;
   font-weight: 600;
   color: #111827;
+  margin: 0;
 }
 
+/* Center Edit Button */
+
 .edit-btn {
-  margin-top: 35px;
+  display: block;
+  margin: 30px auto 0;
   padding: 10px 22px;
   background: #2563eb;
   color: #ffffff;

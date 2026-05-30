@@ -133,7 +133,8 @@ const uploadProfileImage = async (req, res) => {
 
         res.json({
             success: true,
-            user: updatedUser
+            profileImage: updataeuser.profileImage,
+            user: updatedUser,
         });
 
     } catch (error) {
