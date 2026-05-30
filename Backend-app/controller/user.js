@@ -147,6 +147,31 @@ const uploadProfileImage = async (req, res) => {
     }
 };
 
+
+//  Get Imgage from DB
+const getProfile = async (req, res) => {
+
+    try {
+
+        const user = await User.findById(req.userId)
+            .select("-password");
+
+        res.json({
+            success: true,
+            user
+        });
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).json({
+            success: false
+        });
+
+    }
+};
+
 module.exports = {
   registerUser,
   login,
