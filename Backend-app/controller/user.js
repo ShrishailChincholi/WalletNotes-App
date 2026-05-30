@@ -175,5 +175,7 @@ const getProfile = async (req, res) => {
 module.exports = {
   registerUser,
   login,
-  updataeuser   
-}
+  updataeuser,
+  uploadProfileImage,
+  getProfile
+};
