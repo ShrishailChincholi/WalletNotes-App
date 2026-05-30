@@ -113,6 +113,40 @@ const updataeuser = async (req, res) => {
   }
 }
 
+
+//  Image upload 
+const uploadProfileImage = async (req, res) => {
+
+    try {
+
+        const userId = req.userId;
+
+        const imagePath = req.file.filename;
+
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            {
+                profileImage: imagePath
+            },
+            { new: true }
+        );
+
+        res.json({
+            success: true,
+            user: updatedUser
+        });
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).json({
+            success: false
+        });
+
+    }
+};
+
 module.exports = {
   registerUser,
   login,
