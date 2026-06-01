@@ -116,38 +116,35 @@ const updataeuser = async (req, res) => {
 
 //  Image upload 
 const uploadProfileImage = async (req, res) => {
+  try {
 
-    try {
+    console.log("FILE =", req.file);
 
-        const userId = req.userId;
+    const updatedUser = await User.findByIdAndUpdate(
+      req.userId,
+      {
+        profileImage: `/uploads/${req.file.filename}`
+      },
+      {
+        returnDocument: "after"
+      }
+    );
 
-        const imagePath = req.file.filename;
+    console.log("UPDATED USER =", updatedUser);
 
-        const updatedUser = await User.findByIdAndUpdate(
-            userId,
-            {
-                profileImage: imagePath
-            },
-            { new: true }
-        );
+    res.json({
+      success: true,
+      user: updatedUser
+    });
 
-        res.json({
-            success: true,
-            profileImage: updataeuser.profileImage,
-            user: updatedUser,
-        });
+  } catch (error) {
+    console.log(error);
 
-    } catch (error) {
-
-        console.log(error);
-
-        res.status(500).json({
-            success: false
-        });
-
-    }
+    res.status(500).json({
+      success: false
+    });
+  }
 };
-
 
 //  Get Imgage from DB
 const getProfile = async (req, res) => {

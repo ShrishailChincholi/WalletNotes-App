@@ -18,13 +18,12 @@ const Account = () => {
 
   const handleUpload = async () => {
     if (!image) {
-      alert("Select an image");
+      alert("Please select an image");
       return;
     }
 
     try {
       const formData = new FormData();
-
       formData.append("image", image);
 
       const token = localStorage.getItem("token");
@@ -45,23 +44,20 @@ const Account = () => {
       console.log("UPLOAD RESPONSE =", data);
 
       if (data.success) {
-        const updatedUser = {
-          ...user,
-          profileImage: data.profileImage,
-        };
-
-        setUser(updatedUser);
+        setUser(data.user);
 
         localStorage.setItem(
           "user",
-          JSON.stringify(updatedUser)
+          JSON.stringify(data.user)
         );
 
         alert("Profile Image Updated Successfully");
+      } else {
+        alert("Failed to upload image");
       }
 
     } catch (error) {
-      console.log(error);
+      console.log("UPLOAD ERROR =", error);
       alert("Upload Failed");
     }
   };
@@ -69,21 +65,25 @@ const Account = () => {
   if (!user) {
     return (
       <div className="account-container">
-        <p>No user data Found</p>
+        <p>No user data found</p>
       </div>
     );
   }
+
+  console.log("USER =", user);
+  console.log("PROFILE IMAGE =", user?.profileImage);
 
   return (
     <div className="account-container">
 
       <h2>My Account</h2>
 
+      {/* Profile Section */}
       <div className="profile-section">
 
         <img
           src={
-            user.profileImage
+            user?.profileImage
               ? `http://localhost:6060${user.profileImage}`
               : "https://via.placeholder.com/140"
           }
@@ -93,6 +93,7 @@ const Account = () => {
 
         <input
           type="file"
+          accept="image/*"
           onChange={(e) => setImage(e.target.files[0])}
         />
 
@@ -105,14 +106,15 @@ const Account = () => {
 
       </div>
 
+      {/* User Details */}
       <div className="account-info">
         <label>Name</label>
-        <p>{user.name}</p>
+        <p>{user?.name}</p>
       </div>
 
       <div className="account-info">
         <label>Email</label>
-        <p>{user.email}</p>
+        <p>{user?.email}</p>
       </div>
 
       <button
