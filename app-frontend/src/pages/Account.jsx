@@ -52,6 +52,7 @@ const Account = () => {
         );
 
         alert("Profile Image Updated Successfully");
+        // console.log(data)
       } else {
         alert("Failed to upload image");
       }
