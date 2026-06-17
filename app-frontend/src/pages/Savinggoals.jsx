@@ -30,7 +30,7 @@ const SavingGoals = () => {
 
       const data = await response.json();
 
-      console.log("GOALS DATA =", data);
+      // console.log("GOALS DATA =", data);
 
       if (data.success && Array.isArray(data.data)) {
         setGoals(data.data);
@@ -87,10 +87,10 @@ const SavingGoals = () => {
 
       const data = await res.json();
 
-      console.log("UPDATE DATA =", data);
+      // console.log("UPDATE DATA =", data);
 
       if (data.success) {
-        alert("Goal Updated Successfully!");
+        // alert("Goal Updated Successfully!");
 
         setEditingId(null);
 
@@ -129,7 +129,7 @@ const SavingGoals = () => {
 
       const resData = await response.json();
 
-      console.log("ADD DATA =", resData);
+      // console.log("ADD DATA =", resData);
 
       if (resData.success) {
         alert("Goal Added Successfully!");

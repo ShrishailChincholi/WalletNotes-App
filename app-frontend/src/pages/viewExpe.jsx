@@ -63,6 +63,7 @@ const TotalExpenses = () => {
 
       const expDate = getDate(exp);
 
+      
       return (
         expDate &&
         expDate.getMonth() === now.getMonth() &&
