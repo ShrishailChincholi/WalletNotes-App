@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 
 const AddExpense = () => {
+
+  const [showAlert, setShowAlert] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
     amount: "",
@@ -24,14 +30,20 @@ const AddExpense = () => {
       const token = localStorage.getItem('token');
       const response = await fetch("http://localhost:6060/expenses/add", {
         method: "POST",
-        headers: { "Content-Type": "application/json" ,
-          Authorization:`Bearer ${token}`
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
         },
         body: JSON.stringify(formData),
       });
       const DataExp = await response.json();
       if (DataExp.success) {
-        alert("Expense Saved Successfully!");
+        setShowAlert(true);
+
+        setTimeout(() => {
+          setShowAlert(false);
+        }, 3000);
+
         setFormData({
           title: "",
           amount: "",
@@ -39,6 +51,11 @@ const AddExpense = () => {
           date: "",
           about: ""
         });
+
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 1000);
+
       }
     } catch (error) {
       console.error("Error : In adding Expenses", error);
@@ -54,26 +71,59 @@ const AddExpense = () => {
       <div className="form-box">
         <h2>Add Expense</h2>
 
-        <form onSubmit={handleSubmit}>
-          <label>Title *</label>
-          <input type="text" name="title" value={formData.title}
-            placeholder="Enter title" required onChange={handleChange} />
+        {showAlert && (
+          <Alert severity="success" sx={{ mb: 2 }}>
+            <AlertTitle>Success</AlertTitle>
+            Expense Saved Successfully!
+          </Alert>
+        )}
 
-          <label>Amount *</label>
-          <input type="number" name="amount" value={formData.amount}
-            placeholder="Enter amount" required onChange={handleChange} />
+        <form onSubmit={handleSubmit}>
+          <label>Expense Title *</label>
+          <input
+            type="text"
+            name="title"
+            value={formData.title}
+            placeholder="e.g., Groceries, Fuel, Electricity Bill"
+            required
+            onChange={handleChange}
+          />
+
+          <label>Expense Amount (₹) *</label>
+          <input
+            type="number"
+            name="amount"
+            value={formData.amount}
+            placeholder="Enter expense amount"
+            required
+            onChange={handleChange}
+          />
 
           <label>Payment Method</label>
-          <input type="text" name="paymentMethod" value={formData.paymentMethod}
-            placeholder="Cash / Card / UPI" onChange={handleChange} />
+          <input
+            type="text"
+            name="paymentMethod"
+            value={formData.paymentMethod}
+            placeholder="Cash, UPI, Debit Card, Credit Card"
+            onChange={handleChange}
+          />
 
-          <label>Date</label>
-          <input type="date" name="date" value={formData.date}
-            onChange={handleChange} />
+          <label>Expense Date</label>
+          <input
+            type="date"
+            name="date"
+            value={formData.date}
+            onChange={handleChange}
+          />
 
-          <label>About</label>
-          <textarea name="about" rows="3" value={formData.about}
-            placeholder="Write details..." onChange={handleChange}></textarea>
+          <label>Expense Description</label>
+          <textarea
+            name="about"
+            rows="3"
+            value={formData.about}
+            placeholder="Add notes or details about this expense"
+            onChange={handleChange}
+          ></textarea>
 
           <button type="submit" >Save</button>
         </form>

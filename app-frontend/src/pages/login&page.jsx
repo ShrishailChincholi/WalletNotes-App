@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+import Alert from "@mui/material/Alert";
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -8,9 +9,12 @@ const Register = () => {
         email: "",
         password: "",
     });
-    const navigate = useNavigate();
+
 
     const [message, setMessage] = useState("");
+    const [severity, setSeverity] = useState("success");
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({
@@ -34,17 +38,33 @@ const Register = () => {
             const data = await res.json();
 
             if (res.ok) {
-                setMessage("✅ Registration successful");
+                setSeverity("success");
+                setMessage("Registration successfull!")
                 setFormData({ name: "", email: "", password: "" });
                 navigate("/");
 
+                setFormData({
+                    name: "",
+                    email: "",
+                    password: "",
+                });
+
+                setTimeout(() => {
+                    navigate("/");
+                }, 2000);
+
             } else {
-                setMessage(`❌ ${data.message}`);
+                setSeverity("error");
+                setMessage(data.message || "Registration failed");
             }
         } catch (error) {
             console.error(error);
+            setSeverity("error");
             setMessage("❌ Server error");
         }
+        setTimeout(() => {
+            setMessage("");
+        }, 3000);
     };
 
     return (
@@ -52,7 +72,14 @@ const Register = () => {
             <form className="register-form" onSubmit={handleSubmit}>
                 <h2>Create Account</h2>
 
-                {message && <p className="message">{message}</p>}
+                {message && (
+                    <Alert
+                        severity={severity}
+                        sx={{ mb: 2, width: "100%" }}
+                    >
+                        {message}
+                    </Alert>
+                )}
 
                 <input
                     type="text"

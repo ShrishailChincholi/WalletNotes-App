@@ -1,102 +1,111 @@
 .notes-container {
-    width: 30%;
-    margin: auto;
-    margin-top: 30px;
+    width: calc(100% - 250px); /* navbar space */
+    max-width: 800px;
+    margin: 20px auto;
     padding: 20px;
+    background: #f8fafc;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .notes-heading {
     text-align: center;
     font-size: 28px;
     font-weight: bold;
-    color: #2b3a2c;
+    color: #1e293b;
     margin-bottom: 20px;
 }
 
+/* Scrollable Notes Area */
 .notes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 15px;
+    height: 500px;
+    overflow-y: auto;
+
     display: flex;
-    flex-direction: column
+    flex-direction: column;
+    gap: 15px;
+
+    padding-right: 8px;
+}
+
+/* Custom Scrollbar */
+.notes-grid::-webkit-scrollbar {
+    width: 8px;
+}
+
+.notes-grid::-webkit-scrollbar-track {
+    background: #e5e7eb;
+    border-radius: 10px;
+}
+
+.notes-grid::-webkit-scrollbar-thumb {
+    background: #22c55e;
+    border-radius: 10px;
+}
+
+.notes-grid::-webkit-scrollbar-thumb:hover {
+    background: #15803d;
 }
 
 .note-card {
     background: #ffffff;
     padding: 15px;
     border-radius: 12px;
-    text-align: center;
+    border-left: 5px solid #22c55e;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     transition: 0.3s;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
-    cursor: pointer;
-    border-left: 6px solid #22c55e;
 }
 
 .note-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
-    background-color: #dcfce7;
+    transform: translateY(-3px);
+    background: #f0fdf4;
 }
 
 .note-title {
-    font-size: 20px;
-    color: #14532d;
+    font-size: 18px;
     font-weight: 600;
+    color: #14532d;
+    margin-bottom: 12px;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.update-btn {
+    background: #0ea5e9;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.update-btn:hover {
+    background: #0284c7;
+}
+
+.delete-btn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.delete-btn:hover {
+    background: #dc2626;
 }
 
 .no-notes {
     text-align: center;
-    color: #444;
     font-size: 18px;
-}
-
-/* Buttons Container */
-.note-actions {
-    margin-top: 12px;
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-}
-
-/* Update Button */
-.update-btn {
-    background-color: #0ea5e9;
-    color: #fff;
-    padding: 6px 14px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    transition: 0.3s;
-    margin-right: 33px;
-}
-
-.update-btn:hover {
-    background-color: #0369a1;
-    transform: translateY(-3px);
-}
-
-.btn-groupp {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-/* Delete Button */
-.delete-btn {
-    background-color: #ef4444;
-    color: #fff;
-    padding: 6px 14px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-.delete-btn:hover {
-    background-color: #b91c1c;
-    transform: translateY(-3px);
+    color: #64748b;
+    margin-top: 50px;
 }

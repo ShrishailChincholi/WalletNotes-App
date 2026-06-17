@@ -70,7 +70,7 @@ const AllNotes = () => {
 
   return (
     <div className="notes-container">
-      <h2 className="notes-heading">📚 All Notes Titles</h2>
+      <h2 className="notes-heading">📚 All Notes</h2>
 
       <div className="notes-grid">
         {notes.length > 0 ? (
@@ -79,10 +79,17 @@ const AllNotes = () => {
               <h3 className="note-title">📌 {note.title}</h3>
 
               <div className="btn-group">
-                <button className="update-btn" onClick={() => handleEdit(note._id)}>
+                <button
+                  className="update-btn"
+                  onClick={() => handleEdit(note._id)}
+                >
                   ✏️ Edit
                 </button>
-                <button className="delete-btn" onClick={() => handleDelete(note._id)}>
+
+                <button
+                  className="delete-btn"
+                  onClick={() => handleDelete(note._id)}
+                >
                   ❌ Delete
                 </button>
               </div>

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 
 const AddNote = () => {
   const [formData, setFormData] = useState({
@@ -8,24 +10,29 @@ const AddNote = () => {
     content: "",
   });
 
-  const location = useLocation();
+  const [showAlert, setShowAlert] = useState(false);
+
   const navigate = useNavigate();
+
+  const location = useLocation();
   const params = new URLSearchParams(location.search);
   const noteId = params.get("id");
 
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem("token");
 
   async function fetchNote() {
     try {
-      //  Fetch the backend to frontend
-      const res = await fetch(`http://localhost:6060/notes/add/${noteId}`,
+      const res = await fetch(
+        `http://localhost:6060/notes/add/${noteId}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
+
       const data = await res.json();
+
       setFormData({
         title: data.data.title,
         sub: data.data.sub,
@@ -44,21 +51,23 @@ const AddNote = () => {
   }, [noteId]);
 
   function handleChange(e) {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   }
 
-
-  // Save and Update notes 
   async function handleSubmit(e) {
     e.preventDefault();
 
     const method = noteId ? "PUT" : "POST";
+
     const url = noteId
       ? `http://localhost:6060/notes/add/${noteId}`
       : "http://localhost:6060/notes/add";
 
     try {
-      await fetch(url, {
+      const response = await fetch(url, {
         method,
         headers: {
           "Content-Type": "application/json",
@@ -67,13 +76,26 @@ const AddNote = () => {
         body: JSON.stringify(formData),
       });
 
-      alert(noteId ? "Note Updated Successfully!" : "Note Saved Successfully");
-      if (noteId) {
-        // Only when update → redirect
-        navigate("/notes/all");
+      const data = await response.json();
+
+      if (response.ok) {
+        setShowAlert(true);
+
+        setTimeout(() => {
+          setShowAlert(false);
+        }, 3000);
+
+        setFormData({
+          title: "",
+          sub: "",
+          content: "",
+        });
+
+        setTimeout(() => {
+          navigate("/dashboard"); // Dashboard route
+        }, 2000);
       } else {
-        // When adding new → stay here + clear form
-        setFormData({ title: "", sub: "", content: "" });
+        console.log(data.message);
       }
     } catch (error) {
       console.error("Error saving note:", error);
@@ -81,47 +103,54 @@ const AddNote = () => {
   }
 
   return (
-    <>
-      <div className="form-box">
-        <h2>{noteId ? "Update Note" : "Add Note"}</h2>
+    <div className="form-box">
+      <h2>{noteId ? "Update Note" : "Add Note"}</h2>
 
-        <form onSubmit={handleSubmit}>
-          <label>Title *</label>
-          <input
-            type="text"
-            name="title"
-            value={formData.title}
-            placeholder="Enter Title"
-            required
-            onChange={handleChange}
-          />
+      {showAlert && (
+        <Alert severity="success" sx={{ mb: 2 }}>
+          <AlertTitle>Success</AlertTitle>
+          {noteId
+            ? "Note Updated Successfully!"
+            : "Note Saved Successfully!"}
+        </Alert>
+      )}
 
-          <label>Subject *</label>
-          <input
-            type="text"
-            name="sub"
-            value={formData.sub}
-            placeholder="Enter Subject"
-            required
-            onChange={handleChange}
-          />
+      <form onSubmit={handleSubmit}>
+        <label>Note Title *</label>
+        <input
+          type="text"
+          name="title"
+          value={formData.title}
+          placeholder="Enter note title"
+          required
+          onChange={handleChange}
+        />
 
-          <label>Content *</label>
-          <textarea
-            name="content"
-            rows="4"
-            value={formData.content}
-            placeholder="Write your note..."
-            required
-            onChange={handleChange}
-          ></textarea>
+        <label>Subject *</label>
+        <input
+          type="text"
+          name="sub"
+          value={formData.sub}
+          placeholder="Enter subject"
+          required
+          onChange={handleChange}
+        />
 
-          <button type="submit">
-            {noteId ? "Update Note" : "Save Note"}
-          </button>
-        </form>
-      </div>
-    </>
+        <label>Note Content *</label>
+        <textarea
+          name="content"
+          rows="4"
+          value={formData.content}
+          placeholder="Write your note here..."
+          required
+          onChange={handleChange}
+        ></textarea>
+
+        <button type="submit">
+          {noteId ? "Update Note" : "Save Note"}
+        </button>
+      </form>
+    </div>
   );
 };
 
