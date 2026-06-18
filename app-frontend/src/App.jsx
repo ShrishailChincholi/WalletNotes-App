@@ -11,6 +11,7 @@ import "./style/login&page.css"
 import "./style/login.css"
 import "./style/Account.css"
 import "./style/editeprofile.css"
+import "./style/home.css"
 
 
 import AddExpense from "./pages/AddExpense"
@@ -28,6 +29,7 @@ import Login from "./pages/login"
 import AddNote from "./pages/Addnotes"
 import Account from "./pages/Account"
 import EditProfile from "./pages/editeprofile"
+import Home from "./pages/home"
 
 function App() {
 
@@ -37,8 +39,10 @@ function App() {
         <Routes>
 
           <Route element={<AuthLayout />}>
+
+            <Route path="/" element={Home}/>
             <Route path="/Register" element={<Register />} />
-            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
           </Route>
 
 
