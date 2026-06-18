@@ -3,162 +3,177 @@ import Login from "./login";
 import Register from "./login&page";
 
 function Home() {
-    const [showLogin, setShowLogin] = useState(false);
-    const [showRegister, setShowRegister] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
 
-    return (
-        <>
-            <div className="home-container">
+  return (
+    <>
+      <div className="home-container">
 
-                <nav className="navbar">
-                    <div className="logo">
-                        💰 <span>Wallet Notes</span>
-                    </div>
+        <nav className="navbar">
+          <div className="logo">
+            💰 <span>Wallet Notes</span>
+          </div>
 
-                    <div className="nav-btns">
-                        <button
-                            className="login-btn"
-                            onClick={() => setShowLogin(true)}
-                        >
-                            Login
-                        </button>
+          <div className="nav-btns">
+            <button
+              className="login-btn"
+              onClick={() => {
+                setShowRegister(false);
+                setShowLogin(true);
+              }}
+            >
+              Login
+            </button>
 
-                        <button
-                            className="register-btn"
-                            onClick={() => setShowRegister(true)}
-                        >
-                            Register
-                        </button>
-                    </div>
-                </nav>
+            <button
+              className="register-btn"
+              onClick={() => {
+                setShowLogin(false);
+                setShowRegister(true);
+              }}
+            >
+              Register
+            </button>
+          </div>
+        </nav>
 
-                <section className="hero">
+        <section className="hero">
 
-                    <div className="hero-left">
-                        <h1>
-                            Smart Expense <br />
-                            Tracking Made Easy
-                        </h1>
+          <div className="hero-left">
+            <h1>
+              Smart Expense <br />
+              Tracking Made Easy
+            </h1>
 
-                        <p>
-                            Manage expenses, savings goals, notes,
-                            and monthly budgets in one beautiful dashboard.
-                        </p>
+            <p>
+              Manage expenses, savings goals, notes,
+              and monthly budgets in one beautiful dashboard.
+            </p>
 
-                        <button
-                            className="hero-btn"
-                            onClick={() => setShowRegister(true)}
-                        >
-                            Get Started Free
-                        </button>
-                    </div>
+            <button
+              className="hero-btn"
+              onClick={() => {
+                setShowLogin(false);
+                setShowRegister(true);
+              }}
+            >
+              Get Started Free
+            </button>
+          </div>
 
-                    <div className="hero-right">
-                        <img
-                            src="https://cdn-icons-png.flaticon.com/512/3135/3135706.png"
-                            alt="Finance Management"
-                            className="hero-image"
-                        />
-                    </div>
+          <div className="hero-right">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/3135/3135706.png"
+              alt="Finance Management"
+              className="hero-image"
+            />
+          </div>
 
-                </section>
+        </section>
 
-                <section className="features">
+        <section className="features">
+          <div className="feature-card">
+            <h2>💸</h2>
+            <h3>Expense Tracking</h3>
+            <p>Track every expense and manage spending.</p>
+          </div>
 
-                    <div className="feature-card">
-                        <h2>💸</h2>
-                        <h3>Expense Tracking</h3>
-                        <p>Track every expense and manage spending.</p>
-                    </div>
+          <div className="feature-card">
+            <h2>🎯</h2>
+            <h3>Saving Goals</h3>
+            <p>Create goals and achieve financial targets.</p>
+          </div>
 
-                    <div className="feature-card">
-                        <h2>🎯</h2>
-                        <h3>Saving Goals</h3>
-                        <p>Create goals and achieve financial targets.</p>
-                    </div>
+          <div className="feature-card">
+            <h2>📝</h2>
+            <h3>Notes Manager</h3>
+            <p>Store personal finance notes securely.</p>
+          </div>
 
-                    <div className="feature-card">
-                        <h2>📝</h2>
-                        <h3>Notes Manager</h3>
-                        <p>Store personal finance notes securely.</p>
-                    </div>
+          <div className="feature-card">
+            <h2>📊</h2>
+            <h3>Budget Control</h3>
+            <p>Set spending limits and control budgets.</p>
+          </div>
+        </section>
 
-                    <div className="feature-card">
-                        <h2>📊</h2>
-                        <h3>Budget Control</h3>
-                        <p>Set spending limits and control budgets.</p>
-                    </div>
+        <section className="stats">
+          <div className="stat-card">
+            <h2>10K+</h2>
+            <p>Active Users</p>
+          </div>
 
-                </section>
+          <div className="stat-card">
+            <h2>50K+</h2>
+            <p>Expenses Managed</p>
+          </div>
 
-                <section className="stats">
+          <div className="stat-card">
+            <h2>5K+</h2>
+            <p>Saving Goals</p>
+          </div>
+        </section>
 
-                    <div className="stat-card">
-                        <h2>10K+</h2>
-                        <p>Active Users</p>
-                    </div>
+        <footer>
+          <h3>Wallet Note Tracker</h3>
 
-                    <div className="stat-card">
-                        <h2>50K+</h2>
-                        <p>Expenses Managed</p>
-                    </div>
+          <p>Track • Save • Achieve</p>
 
-                    <div className="stat-card">
-                        <h2>5K+</h2>
-                        <p>Saving Goals</p>
-                    </div>
+          <p className="developer">
+            Developed By ❤️ Shrishail Chicholi
+          </p>
 
-                </section>
+          <p className="copyright">
+            © 2026 Wallet Note Tracker. All Rights Reserved.
+          </p>
+        </footer>
 
-                <footer>
-                    <h3>Wallet Note Tracker</h3>
+      </div>
 
-                    <p>
-                        Track • Save • Achieve
-                    </p>
+      {/* LOGIN MODAL */}
+      {showLogin && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <button
+              className="close-btn"
+              onClick={() => setShowLogin(false)}
+            >
+              ✖
+            </button>
 
-                    <p className="developer">
-                        Developed By ❤️ Shrishail Chicholi
-                    </p>
+            <Login
+              openRegister={() => {
+                setShowLogin(false);
+                setShowRegister(true);
+              }}
+            />
+          </div>
+        </div>
+      )}
 
-                    <p className="copyright">
-                        © 2026 Wallet Note Tracker. All Rights Reserved.
-                    </p>
-                </footer>
+      {/* REGISTER MODAL */}
+      {showRegister && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <button
+              className="close-btn"
+              onClick={() => setShowRegister(false)}
+            >
+              ✖
+            </button>
 
-            </div>
-
-            {showLogin && (
-                <div className="modal-overlay">
-                    <div className="modal-box">
-                        <button
-                            className="close-btn"
-                            onClick={() => setShowLogin(false)}
-                        >
-                            ✖
-                        </button>
-
-                        <Login />
-                    </div>
-                </div>
-            )}
-
-            {showRegister && (
-                <div className="modal-overlay">
-                    <div className="modal-box">
-                        <button
-                            className="close-btn"
-                            onClick={() => setShowRegister(false)}
-                        >
-                            ✖
-                        </button>
-
-                        <Register />
-                    </div>
-                </div>
-            )}
-        </>
-    );
+            <Register
+              openLogin={() => {
+                setShowRegister(false);
+                setShowLogin(true);
+              }}
+            />
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
 
 export default Home;

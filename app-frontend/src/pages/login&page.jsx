@@ -1,122 +1,143 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import Alert from "@mui/material/Alert";
 
-const Register = () => {
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        password: "",
+const Register = ({ openLogin }) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const [message, setMessage] = useState("");
+  const [severity, setSeverity] = useState("success");
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
     });
+  };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const [message, setMessage] = useState("");
-    const [severity, setSeverity] = useState("success");
+    try {
+      const res = await fetch("http://localhost:6060/api/auth/Register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    const navigate = useNavigate();
+      const data = await res.json();
 
-    const handleChange = (e) => {
+      if (res.ok) {
+        setSeverity("success");
+        setMessage("Registration Successful ✅");
+
         setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
+          name: "",
+          email: "",
+          password: "",
         });
-    };
 
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const res = await fetch("http://localhost:6060/api/auth/Register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-            });
-
-            const data = await res.json();
-
-            if (res.ok) {
-                setSeverity("success");
-                setMessage("Registration successfull!")
-                setFormData({ name: "", email: "", password: "" });
-                navigate("/");
-
-                setFormData({
-                    name: "",
-                    email: "",
-                    password: "",
-                });
-
-                setTimeout(() => {
-                    navigate("/");
-                }, 2000);
-
-            } else {
-                setSeverity("error");
-                setMessage(data.message || "Registration failed");
-            }
-        } catch (error) {
-            console.error(error);
-            setSeverity("error");
-            setMessage("❌ Server error");
-        }
         setTimeout(() => {
-            setMessage("");
-        }, 3000);
-    };
+          if (openLogin) {
+            openLogin()
+          }
+        }, 1000);
+      } else {
+        setSeverity("error");
+        setMessage(data.message || "Registration Failed");
+      }
+    } catch (error) {
+      console.error(error);
+      setSeverity("error");
+      setMessage("Server Error");
+    }
 
-    return (
-        <div className="register-container">
-            <form className="register-form" onSubmit={handleSubmit}>
-                <h2>Create Account</h2>
+    setTimeout(() => {
+      setMessage("");
+    }, 2000);
+  };
 
-                {message && (
-                    <Alert
-                        severity={severity}
-                        sx={{ mb: 2, width: "100%" }}
-                    >
-                        {message}
-                    </Alert>
-                )}
+  return (
+    <div className="auth-container">
+      <div className="auth-card">
 
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Full Name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                />
-
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email Address"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                />
-
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                />
-
-                <button type="submit">Register</button>
-
-                <p className='auth-switch'>
-                    I have already have an account ?
-                    <Link to='/'>Login</Link>
-                </p>
-            </form>
+        <div className="auth-header">
+          <h2>Create Account</h2>
+          <p>Join Wallet Note Tracker and start managing your finances.</p>
         </div>
-    );
-}
+
+        <form onSubmit={handleSubmit}>
+
+          {message && (
+            <Alert severity={severity} sx={{ mb: 2 }}>
+              {message}
+            </Alert>
+          )}
+
+          <div className="input-group">
+            <label>Full Name</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter your full name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="input-group">
+            <label>Email Address</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="input-group">
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Create a password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <button type="submit" className="auth-btn">
+            Create Account
+          </button>
+
+          <p className="auth-switch">
+            Already have an account?{" "}
+            <span
+              onClick={openLogin}
+              style={{
+                color: "#2563eb",
+                cursor: "pointer",
+                fontWeight: "600",
+              }}
+            >
+              Login
+            </span>
+          </p>
+
+        </form>
+
+      </div>
+    </div>
+  );
+};
 
 export default Register;

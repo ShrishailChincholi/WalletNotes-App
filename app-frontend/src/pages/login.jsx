@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ openRegister }) => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -44,53 +44,78 @@ const Login = () => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
 
-      setMessage("Login successful ✅");
+      setMessage("Login Successful ✅");
 
       setTimeout(() => {
         navigate("/dashboard");
       }, 800);
+
     } catch (error) {
       console.error(error);
-      setMessage("Server error");
+      setMessage("Server Error");
     }
   };
 
   return (
-    <div className="register-container">
-      <form className="register-form" onSubmit={handleSubmit}>
-        <h2>Login</h2>
+    <div className="auth-container">
+      <div className="auth-card">
 
-        {message && <p className="message">{message}</p>}
+        <div className="auth-header">
+          <h2>Welcome Back 👋</h2>
+          <p>Login to your Wallet Note Tracker account</p>
+        </div>
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email Address"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
+        {message && (
+          <p className="message">{message}</p>
+        )}
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
+        <form onSubmit={handleSubmit}>
 
-        <button type="submit">Login</button>
+          <div className="input-group">
+            <label>Email Address</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <p className="auth-switch">
-          Don't have an account?{" "}
-          <Link to="/register">Register</Link>
-        </p>
+          <div className="input-group">
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <p className="auth-switch">
-          <Link to="/">Back to Home</Link>
-        </p>
-      </form>
+          <button type="submit" className="auth-btn">
+            Login
+          </button>
+
+          <p className="auth-switch">
+            Don't have an account?{" "}
+            <span
+              onClick={openRegister}
+              style={{
+                color: "#2563eb",
+                cursor: "pointer",
+                fontWeight: "600",
+              }}
+            >
+              Register
+            </span>
+          </p>
+
+        </form>
+
+      </div>
     </div>
   );
 };
