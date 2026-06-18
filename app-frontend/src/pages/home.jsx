@@ -1,104 +1,164 @@
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Login from "./login";
+import Register from "./login&page";
 
+function Home() {
+    const [showLogin, setShowLogin] = useState(false);
+    const [showRegister, setShowRegister] = useState(false);
 
-function home() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const navigate = useNavigate();
+    return (
+        <>
+            <div className="home-container">
 
-  return (
-    <div className="home">
+                <nav className="navbar">
+                    <div className="logo">
+                        💰 <span>Wallet Notes</span>
+                    </div>
 
-      <nav className="navbar">
-        <h2>💰 Wallet-Notes</h2>
+                    <div className="nav-btns">
+                        <button
+                            className="login-btn"
+                            onClick={() => setShowLogin(true)}
+                        >
+                            Login
+                        </button>
 
-        <div>
-          <button
-            className="login-btn"
-            onClick={() => navigate("/login")}
-          >
-            Login
-          </button>
+                        <button
+                            className="register-btn"
+                            onClick={() => setShowRegister(true)}
+                        >
+                            Register
+                        </button>
+                    </div>
+                </nav>
 
-          <button
-            className="register-btn"
-            onClick={() => navigate("/register")}
-          >
-            Register
-          </button>
-        </div>
-      </nav>
+                <section className="hero">
 
-      <section className="hero">
-        <div className="hero-left">
-          <h1>
-            Track Expenses,
-            Save Money &
-            Manage Notes
-          </h1>
+                    <div className="hero-left">
+                        <h1>
+                            Smart Expense <br />
+                            Tracking Made Easy
+                        </h1>
 
-          <p>
-            Wallet-Notes helps you manage daily expenses,
-            savings goals, spending limits and important notes
-            all in one place.
-          </p>
+                        <p>
+                            Manage expenses, savings goals, notes,
+                            and monthly budgets in one beautiful dashboard.
+                        </p>
 
-          <button
-            className="hero-btn"
-            onClick={() => navigate("/register")}
-          >
-            Get Started Free
-          </button>
-        </div>
+                        <button
+                            className="hero-btn"
+                            onClick={() => setShowRegister(true)}
+                        >
+                            Get Started Free
+                        </button>
+                    </div>
 
-        <div className="hero-right">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png"
-            alt=""
-          />
-        </div>
-      </section>
+                    <div className="hero-right">
+                        <img
+                            src="https://cdn-icons-png.flaticon.com/512/3135/3135706.png"
+                            alt="Finance Management"
+                            className="hero-image"
+                        />
+                    </div>
 
-      <section className="features">
+                </section>
 
-        <div className="feature-card">
-          <h3>💸 Expense Tracking</h3>
-          <p>Monitor daily expenses easily.</p>
-        </div>
+                <section className="features">
 
-        <div className="feature-card">
-          <h3>🎯 Saving Goals</h3>
-          <p>Create and achieve savings targets.</p>
-        </div>
+                    <div className="feature-card">
+                        <h2>💸</h2>
+                        <h3>Expense Tracking</h3>
+                        <p>Track every expense and manage spending.</p>
+                    </div>
 
-        <div className="feature-card">
-          <h3>📝 Notes Manager</h3>
-          <p>Store personal finance notes.</p>
-        </div>
+                    <div className="feature-card">
+                        <h2>🎯</h2>
+                        <h3>Saving Goals</h3>
+                        <p>Create goals and achieve financial targets.</p>
+                    </div>
 
-        <div className="feature-card">
-          <h3>📊 Budget Control</h3>
-          <p>Set monthly spending limits.</p>
-        </div>
+                    <div className="feature-card">
+                        <h2>📝</h2>
+                        <h3>Notes Manager</h3>
+                        <p>Store personal finance notes securely.</p>
+                    </div>
 
-      </section>
+                    <div className="feature-card">
+                        <h2>📊</h2>
+                        <h3>Budget Control</h3>
+                        <p>Set spending limits and control budgets.</p>
+                    </div>
 
-      <section className="about">
-        <h2>Why Choose Wallet-Notes?</h2>
+                </section>
 
-        <p>
-          Wallet-Notes is an all-in-one personal finance
-          management system that allows users to track expenses,
-          manage savings goals, maintain notes, and control
-          spending limits through a simple dashboard.
-        </p>
-      </section>
+                <section className="stats">
 
-      <footer>
-        <h3>Wallet-Notes © 2026</h3>
-      </footer>
+                    <div className="stat-card">
+                        <h2>10K+</h2>
+                        <p>Active Users</p>
+                    </div>
 
-    </div>
-  );
+                    <div className="stat-card">
+                        <h2>50K+</h2>
+                        <p>Expenses Managed</p>
+                    </div>
+
+                    <div className="stat-card">
+                        <h2>5K+</h2>
+                        <p>Saving Goals</p>
+                    </div>
+
+                </section>
+
+                <footer>
+                    <h3>Wallet Note Tracker</h3>
+
+                    <p>
+                        Track • Save • Achieve
+                    </p>
+
+                    <p className="developer">
+                        Developed By ❤️ Shrishail Chicholi
+                    </p>
+
+                    <p className="copyright">
+                        © 2026 Wallet Note Tracker. All Rights Reserved.
+                    </p>
+                </footer>
+
+            </div>
+
+            {showLogin && (
+                <div className="modal-overlay">
+                    <div className="modal-box">
+                        <button
+                            className="close-btn"
+                            onClick={() => setShowLogin(false)}
+                        >
+                            ✖
+                        </button>
+
+                        <Login />
+                    </div>
+                </div>
+            )}
+
+            {showRegister && (
+                <div className="modal-overlay">
+                    <div className="modal-box">
+                        <button
+                            className="close-btn"
+                            onClick={() => setShowRegister(false)}
+                        >
+                            ✖
+                        </button>
+
+                        <Register />
+                    </div>
+                </div>
+            )}
+        </>
+    );
 }
 
-export default home;
+export default Home;
