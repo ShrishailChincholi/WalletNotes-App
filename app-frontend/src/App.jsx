@@ -1,69 +1,89 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import "./style/Navbar.css"
-import "./style/Addexpes.css"
-import "./style/Savinggoals.css"
-import "./style/allnotes.css"
-import "./style/spend.css"
-import "./style/month.css"
-import "./style/download.css"
-import "./style/dashboard.css"
-import "./style/login&page.css"
-import "./style/login.css"
-import "./style/Account.css"
-import "./style/editeprofile.css"
-import "./style/home.css"
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import AddExpense from "./pages/AddExpense"
-import TotalExpenses from "./pages/viewExpe"
-import SavingGoals from "./pages/Savinggoals"
-import AllNotes from "./pages/Allnotes"
-import SpendingLimits from "./pages/spendLimt"
-import MonthlyReport from "./pages/monthlyreport"
-import DownloadReport from "./pages/downloadreport"
-import Dashboard from "./pages/dashboard"
-import Register from "./pages/login&page"
-import AuthLayout from "./layout/AuthLayout"
-import MainLayout from "./layout/MainLayout"
-import Login from "./pages/login"
-import AddNote from "./pages/Addnotes"
-import Account from "./pages/Account"
-import EditProfile from "./pages/editeprofile"
-import Home from "./pages/home"
+// Styles
+import "./style/Navbar.css";
+import "./style/Addexpes.css";
+import "./style/Savinggoals.css";
+import "./style/allnotes.css";
+import "./style/spend.css";
+import "./style/month.css";
+import "./style/download.css";
+import "./style/dashboard.css";
+import "./style/login&page.css";
+import "./style/login.css";
+import "./style/Account.css";
+import "./style/editeprofile.css";
+import "./style/home.css";
+
+// Layouts
+import AuthLayout from "./layout/AuthLayout";
+import MainLayout from "./layout/MainLayout";
+
+// Pages
+import Home from "./pages/home";
+import Login from "./pages/login";
+import Register from "./pages/login&page";
+import Dashboard from "./pages/dashboard";
+
+import AddExpense from "./pages/AddExpense";
+import TotalExpenses from "./pages/viewExpe";
+
+import AddNote from "./pages/Addnotes";
+import AllNotes from "./pages/Allnotes";
+
+import SavingGoals from "./pages/Savinggoals";
+import SpendingLimits from "./pages/spendLimt";
+
+import MonthlyReport from "./pages/monthlyreport";
+import DownloadReport from "./pages/downloadreport";
+
+import Account from "./pages/Account";
+import EditProfile from "./pages/editeprofile";
 
 function App() {
-
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
+    <BrowserRouter>
+      <Routes>
 
-          <Route element={<AuthLayout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Route>
+        {/* Public Routes */}
+        <Route element={<AuthLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
 
+        {/* Protected / Main Layout Routes */}
+        <Route element={<MainLayout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
 
-          <Route element={<MainLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/expenses/add" element={<AddExpense />} />
-            <Route path="/expenses/all" element={<TotalExpenses />} />
-            <Route path="/notes/add" element={<AddNote />} />
-            <Route path="/goals/saving" element={<SavingGoals />} />
-            <Route path="/goals/spending-limit" element={<SpendingLimits />} />
-            <Route path="/reports/monthly" element={<MonthlyReport />} />
-            <Route path="/reports/pdf" element={<DownloadReport />} />
-            <Route path="/notes/all" element={<AllNotes />} />
-            <Route path="/account" element={<Account />} />
-            <Route path="/edit-profile" element={<EditProfile />} />
-          </Route>
+          {/* Expenses */}
+          <Route path="/expenses/add" element={<AddExpense />} />
+          <Route path="/expenses/all" element={<TotalExpenses />} />
 
-        </Routes>
-      </BrowserRouter>
-    </>
-  )
+          {/* Notes */}
+          <Route path="/notes/add" element={<AddNote />} />
+          <Route path="/notes/all" element={<AllNotes />} />
+
+          {/* Goals */}
+          <Route path="/goals/saving" element={<SavingGoals />} />
+          <Route
+            path="/goals/spending-limit"
+            element={<SpendingLimits />}
+          />
+
+          {/* Reports */}
+          <Route path="/reports/monthly" element={<MonthlyReport />} />
+          <Route path="/reports/pdf" element={<DownloadReport />} />
+
+          {/* Account */}
+          <Route path="/account" element={<Account />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
+        </Route>
+
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
-
+export default App;
